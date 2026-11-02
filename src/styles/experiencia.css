@@ -298,19 +298,27 @@
   .trabalhos ~ .projeto_link { grid-row: 8; }
 }
 
-/* ---------- Faixa de trabalhos (LogoLoop) ----------
-   Cartões no visual do site passando devagar; ao passar o mouse a faixa
-   para e o cartão cresce por cima dos vizinhos. */
+/* ---------- Cartas das experiências (LogoLoop) ----------
+   Cartas em pé, como de baralho, passando devagar; ao passar o mouse a
+   faixa para e a carta cresce por cima das vizinhas. */
 .faixa-trabalhos {
-  margin-top: 72px;
+  margin-top: 56px;
   /* sangra até as bordas da tela */
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
 }
 
-/* espaço em cima e embaixo para o cartão crescer sem ser cortado */
+/* espaço em cima e embaixo para a carta crescer sem ser cortada */
 .faixa-trabalhos .logoloop {
-  padding: 32px 0 56px;
+  padding: 36px 0 64px;
+}
+
+.faixa-trabalhos .logoloop__item,
+.faixa-trabalhos .logoloop__node {
+  /* o LogoLoop dimensiona logos pela fonte; nas cartas, a fonte é a do site */
+  font-size: 1rem;
+  line-height: normal;
+  height: auto;
 }
 
 .faixa-trabalhos .logoloop__item {
@@ -325,73 +333,170 @@
   transition-delay: 0s;
 }
 
-.faixa-cartao {
+.carta {
+  --carta-largura: 320px;
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: 300px;
-  padding: 10px 10px 14px;
+  width: var(--carta-largura);
+  height: calc(var(--carta-largura) * 1.4);
+  padding: 22px 24px 20px;
   border: 1px solid var(--filete);
-  border-radius: 4px;
+  border-radius: 12px;
   background-color: var(--papel);
-  transform-origin: 50% 60%;
+  text-align: left;
+  white-space: normal;
+  transform-origin: 50% 55%;
   transition: transform 0.45s var(--ease-chegada), box-shadow 0.45s var(--ease-chegada), border-color 0.25s ease;
 }
 
-.faixa-cartao img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 5 / 4;
-  object-fit: cover;
-  border-radius: 2px;
+/* o ano no canto, como o índice de uma carta de baralho */
+.carta_canto {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  color: var(--sinal);
 }
 
-.faixa-cartao_legenda {
+.carta_canto--baixo {
+  top: auto;
+  bottom: 14px;
+  right: auto;
+  left: 18px;
+  transform: rotate(180deg);
+  opacity: 0.35;
+}
+
+.carta_cabeca {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  padding: 0 2px;
+  flex-direction: column;
+  gap: 2px;
+  padding-right: 56px;
+}
+
+.carta_ponto {
+  width: 10px;
+  height: 10px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  background-color: var(--sinal);
+}
+
+.carta_titulo {
+  font-size: 1.375rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.carta_papel {
   font-size: 0.9375rem;
   color: var(--anotacao);
 }
 
-.faixa-cartao_legenda strong {
-  font-weight: 600;
-  color: var(--tinta);
+.carta_texto {
+  margin-top: 14px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--texto-corrido);
 }
 
-/* o cartão apontado cresce e passa por cima dos vizinhos */
-.faixa-cartao:hover,
-.faixa-cartao:focus-visible {
-  transform: scale(1.14);
+/* o LogoLoop dá a altura do "logo" a toda imagem; nas miniaturas, não */
+.faixa-trabalhos .carta img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.carta_trabalhos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+/* miniaturas: só a imagem principal, sem giro */
+.carta_miniatura {
+  display: block;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  border: 1px solid var(--filete);
+  border-radius: 4px;
+  transition: border-color 0.25s ease;
+}
+
+.carta_miniatura img {
+  object-fit: cover;
+}
+
+.carta_miniatura:hover,
+.carta_miniatura:focus-visible {
   border-color: var(--sinal);
-  box-shadow: 0 18px 40px -16px rgba(20, 20, 20, 0.35);
 }
 
-.faixa-cartao:focus-visible {
+.carta_miniatura:focus-visible {
   outline: 2px solid var(--sinal);
-  outline-offset: 3px;
+  outline-offset: 2px;
+}
+
+.carta_etiquetas {
+  margin-top: auto; /* etiquetas e link no pé da carta */
+  padding-top: 14px;
+}
+
+.carta_etiquetas li {
+  font-size: 0.8125rem;
+  padding: 2px 8px;
+}
+
+.carta_link {
+  margin-top: 4px;
+  min-height: 40px;
+  font-size: 0.9375rem;
+  margin-bottom: 14px;
+}
+
+/* sem link, as etiquetas ainda deixam espaço para o ano do pé */
+.carta_etiquetas:last-of-type:not(:has(+ .carta_link)) {
+  margin-bottom: 30px;
+}
+
+/* a carta apontada cresce e passa por cima das vizinhas */
+.carta:hover,
+.carta:focus-within {
+  transform: scale(1.07) translateY(-6px);
+  border-color: var(--sinal);
+  box-shadow: 0 22px 44px -18px rgba(20, 20, 20, 0.35);
 }
 
 @media (max-width: 900px) {
   .faixa-trabalhos {
-    margin-top: 48px;
+    margin-top: 40px;
   }
 
-  .faixa-cartao {
-    width: 220px;
+  .carta {
+    --carta-largura: 280px;
+    height: 470px;
+    padding: 20px 20px 18px;
+  }
+
+  /* no índice do celular, só ano, nome e cargo: mais compacto */
+  .projetos {
+    gap: 22px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .faixa-cartao {
+  .carta {
     transition: border-color 0.2s ease;
   }
 
-  .faixa-cartao:hover,
-  .faixa-cartao:focus-visible {
+  .carta:hover,
+  .carta:focus-within {
     transform: none;
   }
 }
-
