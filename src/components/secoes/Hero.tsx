@@ -1,8 +1,14 @@
+import FlowField from "@/components/kokonutui/flow-field";
 import { vars } from "@/lib/vars";
 
 export function Hero() {
   return (
     <section className="onda" aria-labelledby="titulo-principal">
+      {/* Fundo do Hero: Flow Field original do KokonutUI, atrás de todo o conteúdo */}
+      <div className="onda_fundo" aria-hidden="true">
+        <FlowField />
+      </div>
+
       <div className="onda_palco">
         <div className="onda_cena">
           <div className="onda_grade" aria-hidden="true"></div>

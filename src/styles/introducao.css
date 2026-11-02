@@ -9,7 +9,26 @@
   view-timeline: --hero block;
 }
 
+/* Fundo do Hero (Flow Field): ocupa a largura toda e a altura da tela,
+   fica preso enquanto o palco está preso e não ocupa espaço no fluxo.
+   O canvas desenha com a cor do texto daqui. */
+.onda {
+  isolation: isolate;
+  overflow: clip; /* o fundo não passa para a Experiência */
+}
+
+.onda_fundo {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  height: 100svh;
+  margin-bottom: -100svh;
+  color: var(--anotacao-clara);
+  pointer-events: none;
+}
+
 .onda_palco {
+  z-index: 1;
   position: relative;
   max-width: var(--largura);
   margin: 0 auto;
