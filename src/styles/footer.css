@@ -57,16 +57,68 @@
   font-weight: 700;
   color: var(--texto-forte-sobre-tinta);
   overflow-wrap: anywhere;
-  background-image: linear-gradient(var(--sinal-claro), var(--sinal-claro));
-  background-repeat: no-repeat;
-  background-position: 0 calc(100% - 18px);
-  background-size: 0% 2px;
+  position: relative;
 }
 
-.contato_lista a:hover,
-.contato_lista a:focus-visible {
-  background-size: 100% 2px;
+/* ---------- Canais do instrumento ----------
+   Cada contato é um canal de saída (CH 01–04). Ao passar o mouse, um
+   feixe varre o canal, o texto acende em azul e a ação aparece à direita. */
+.contato_canal {
+  flex: none;
+  width: 76px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  color: var(--texto-escuro-sobre-tinta);
+}
+
+.contato_valor {
+  white-space: nowrap;
+  background: linear-gradient(90deg, var(--sinal-claro) 50%, var(--texto-forte-sobre-tinta) 50%) no-repeat 100% 0 / 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.contato_acao {
+  margin-left: auto;
+  padding-left: 16px;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--sinal-claro);
+  opacity: 0;
+  transform: translateX(-8px);
+}
+
+/* o feixe que varre o canal */
+.contato_lista a::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 0;
+  width: 2px;
+  background-color: var(--sinal-claro);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contato_lista a:hover .contato_valor,
+.contato_lista a:focus-visible .contato_valor {
+  background-position: 0 0;
+}
+
+.contato_lista a:hover .contato_acao,
+.contato_lista a:focus-visible .contato_acao {
+  opacity: 1;
+  transform: none;
+}
+
+/* na linha do e-mail, a ação é o botão de copiar */
+.contato_email .contato_acao {
+  display: none;
 }
 
 .contato_copy {
@@ -94,6 +146,20 @@
   .contato_lista a {
     min-height: 64px;
   }
+
+  .contato_canal {
+    width: 56px;
+    font-size: 0.6875rem;
+  }
+
+  .contato_acao {
+    display: none;
+  }
+
+  /* no celular o e-mail pode quebrar para caber */
+  .contato_valor {
+    white-space: normal;
+  }
 }
 
 /* ---------- Copiar e-mail: leitura de confirmação ---------- */
@@ -106,7 +172,8 @@
 }
 
 .contato_email a {
-  flex: 1 1 auto;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .copiar {

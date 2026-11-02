@@ -42,37 +42,50 @@
   gap: 8px;
 }
 
+/* Menu como seletor de canal: um ponto indicador (LED) antes de cada
+   item. Ao passar o mouse, o texto acende da esquerda para a direita;
+   o item da seção visível fica com o LED e o texto acesos em azul. */
 .header_menu a {
   display: flex;
   align-items: center;
+  gap: 8px;
   min-height: 44px;
   padding: 0 14px;
   border-radius: 6px;
   font-size: 1.0625rem;
-  color: var(--tinta);
   position: relative;
+  background: linear-gradient(90deg, var(--sinal) 50%, var(--tinta) 50%) no-repeat 100% 0 / 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.header_menu a::after {
+.header_menu a::before {
   content: "";
-  position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 8px;
-  height: 2px;
-  background-color: var(--sinal);
-  transform: scaleX(0);
-  transform-origin: left;
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--filete);
 }
 
-.header_menu a:hover::after,
-.header_menu a[aria-current="true"]::after {
-  transform: scaleX(1);
+.header_menu a:hover,
+.header_menu a:focus-visible,
+.header_menu a[aria-current="true"] {
+  background-position: 0 0;
+}
+
+.header_menu a:hover::before {
+  background-color: var(--anotacao-clara);
 }
 
 .header_menu a[aria-current="true"] {
-  color: var(--sinal);
   font-weight: 600;
+}
+
+.header_menu a[aria-current="true"]::before {
+  background-color: var(--sinal);
+  transform: scale(1.25);
 }
 
 @media (max-width: 600px) {
@@ -93,9 +106,13 @@
     font-size: 1rem;
   }
 
-  .header_menu a::after {
-    left: 10px;
-    right: 10px;
+  .header_menu a {
+    gap: 6px;
+  }
+
+  .header_menu a::before {
+    width: 5px;
+    height: 5px;
   }
 }
 

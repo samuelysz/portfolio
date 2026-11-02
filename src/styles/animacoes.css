@@ -235,12 +235,15 @@ footer[id] {
 }
 
 /* ---------- Feedback de interação ---------- */
-.header_menu a {
-  transition: color 0.2s ease;
+/* Menu e links: o texto acende da esquerda para a direita, como um canal */
+.header_menu a,
+.harmonico_link,
+.projeto_link {
+  transition: background-position 0.6s cubic-bezier(0.45, 0, 0.25, 1);
 }
 
-.header_menu a::after {
-  transition: transform 0.35s var(--ease-chegada);
+.header_menu a::before {
+  transition: background-color 0.25s ease, transform 0.35s var(--ease-chegada);
 }
 
 .botao-sinal {
@@ -254,13 +257,23 @@ footer[id] {
 
 .harmonico_link,
 .projeto_link {
-  transition: color 0.2s ease, text-underline-offset 0.25s var(--ease-chegada);
+  background: linear-gradient(90deg, var(--sinal-forte) 50%, var(--sinal) 50%) no-repeat 100% 0 / 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-decoration-color: var(--sinal);
+}
+
+.harmonico_link::after,
+.projeto_link::after {
+  background-color: var(--sinal);
 }
 
 .harmonico_link:hover,
-.projeto_link:hover {
-  color: var(--sinal-forte);
-  text-underline-offset: 6px;
+.projeto_link:hover,
+.harmonico_link:focus-visible,
+.projeto_link:focus-visible {
+  background-position: 0 0;
 }
 
 /* Passar o mouse num projeto acende o pico dele */
@@ -321,8 +334,32 @@ footer[id] {
   animation: pulso 0.9s var(--ease-chegada);
 }
 
-.contato_lista a {
-  transition: background-size 0.4s var(--ease-chegada), color 0.2s ease;
+/* Canais do Contato: feixe, texto e ação */
+.contato_valor {
+  transition: background-position 0.7s cubic-bezier(0.45, 0, 0.25, 1);
+}
+
+.contato_acao {
+  transition: opacity 0.3s ease 0.25s, transform 0.4s var(--ease-chegada) 0.25s;
+}
+
+.contato_lista a:hover::after,
+.contato_lista a:focus-visible::after {
+  animation: varrer-canal 0.7s cubic-bezier(0.45, 0, 0.25, 1);
+}
+
+@keyframes varrer-canal {
+  from {
+    left: 0;
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    left: 100%;
+    opacity: 0;
+  }
 }
 
 /* Foco visível */
@@ -493,5 +530,19 @@ footer[id] {
   .botao-sinal:hover .botao-sinal_ponto::after,
   .botao-sinal:focus-visible .botao-sinal_ponto::after {
     animation: none;
+  }
+
+  /* canais e links: acendem na hora, sem feixe */
+  .contato_lista a:hover::after,
+  .contato_lista a:focus-visible::after {
+    animation: none;
+  }
+
+  .contato_valor,
+  .contato_acao,
+  .header_menu a,
+  .harmonico_link,
+  .projeto_link {
+    transition: none;
   }
 }
