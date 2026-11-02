@@ -1,3 +1,4 @@
+import { SinalContato } from "@/components/secoes/SinalContato";
 import { CopiarEmail } from "@/components/secoes/CopiarEmail";
 
 const canais = [
@@ -10,9 +11,7 @@ const canais = [
 export function Contato() {
   return (
     <footer className="contato" id="contato" aria-labelledby="titulo-contato">
-      <svg className="contato_sinal desenha" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-        <path d="M0 30 H420 C450 30 460 6 490 6 C520 6 530 54 560 54 C590 54 600 30 630 30 H1440" />
-      </svg>
+      <SinalContato />
       <div className="contato_conteudo">
         <div className="contato_cabeca">
           <h2 className="secao_titulo" id="titulo-contato">Contato</h2>
