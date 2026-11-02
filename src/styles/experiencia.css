@@ -265,6 +265,10 @@
     align-items: stretch;
   }
 
+  .carta_mais {
+    display: none;
+  }
+
   /* a carta começa logo abaixo da base da onda e todas têm a mesma altura */
   .projeto .carta {
     flex: 1;
@@ -312,6 +316,41 @@
   .projeto .carta {
     max-width: 620px;
     margin-top: 14px;
+  }
+
+  /* texto em três linhas, com "Ler mais" */
+  .carta_texto:not([data-aberto]) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .carta_mais {
+    align-self: flex-start;
+    min-height: 44px;
+    margin: 0 0 -8px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--sinal);
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+
+  .carta_mais:hover {
+    color: var(--sinal-forte);
+  }
+
+  .carta_mais:focus-visible {
+    outline: 2px solid var(--sinal);
+    outline-offset: 3px;
   }
 
   /* miniaturas num tamanho de miniatura, não de vitrine */

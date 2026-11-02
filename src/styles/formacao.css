@@ -166,7 +166,8 @@
   /* título, não rótulo de anotação */
   text-transform: none;
   color: var(--tinta);
-  font-size: 1.75rem;
+  /* mesmo peso de "Engenharia de Software" */
+  font-size: clamp(1.75rem, 2.8vw, 2.5rem);
   line-height: 1.2;
   font-weight: 700;
   letter-spacing: -0.01em;
