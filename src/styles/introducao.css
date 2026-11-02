@@ -460,7 +460,8 @@
     max-width: 640px;
     height: auto;
     aspect-ratio: 760 / 656;
-    margin: 4px calc(-1 * var(--margem)) 0;
+    /* respiro entre o cabeçalho e o cabelo: 28px no celular, até 48px no tablet */
+    margin: clamp(28px, 6vw, 48px) calc(-1 * var(--margem)) 0;
     align-self: center;
     object-position: center top;
   }
