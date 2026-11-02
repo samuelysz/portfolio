@@ -4,13 +4,18 @@
    luminária foi apagada (data-tema="escuro").
    ========================================================== */
 
+/* O modo tela é só do desktop; no celular a página fica sempre clara
+   (ver global.css). */
+
 /* Marca: o "S" azul-marinho some no fundo escuro; vira o tom do texto */
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) and (min-width: 901px) {
   :root:not([data-tema="claro"]) .header_marca img {
     filter: brightness(0) invert(0.92);
   }
 }
 
-:root[data-tema="escuro"] .header_marca img {
-  filter: brightness(0) invert(0.92);
+@media (min-width: 901px) {
+  :root[data-tema="escuro"] .header_marca img {
+    filter: brightness(0) invert(0.92);
+  }
 }

@@ -190,8 +190,8 @@
   stroke: var(--sinal); /* foco pelo teclado */
 }
 
-/* No celular o cabeçalho não tem espaço: o modo segue o sistema */
-@media (max-width: 600px) {
+/* O modo tela é só do desktop: no celular e no tablet não há luminária */
+@media (max-width: 900px) {
   .lampada {
     display: none;
   }

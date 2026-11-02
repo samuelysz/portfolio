@@ -186,6 +186,14 @@ p {
   color-scheme: dark;
 }
 
+/* No celular e no tablet, sempre o modo papel (claro) */
+@media (max-width: 900px) {
+  :root,
+  :root[data-tema="escuro"] {
+    color-scheme: light;
+  }
+}
+
 @media (max-width: 900px) {
   :root {
     --margem: 24px;
