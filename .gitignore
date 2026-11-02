@@ -1,0 +1,14 @@
+# Sistema / editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+*.log
+
+# Dependências (caso use ferramentas no futuro)
+node_modules/
+
+# Ferramentas de IA / design (locais, não fazem parte do site)
+.claude/
+.impeccable/
+skills-lock.json

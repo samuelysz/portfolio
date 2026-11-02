@@ -1,0 +1,146 @@
+/* ==========================================================
+   Contato: a saída do sinal, única seção em tinta escura.
+   ========================================================== */
+.contato {
+  background-color: var(--tinta);
+  color: var(--papel);
+  padding-top: 72px;
+}
+
+.contato_sinal {
+  display: block;
+  width: 100%;
+  height: 60px;
+}
+
+.contato_sinal path {
+  stroke: var(--sinal-claro);
+}
+
+.contato_conteudo {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 56px var(--margem) 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px 100px;
+  align-items: start;
+}
+
+.contato_cabeca .secao_titulo {
+  color: var(--papel);
+}
+
+.contato_texto {
+  margin-top: 24px;
+  font-size: 1.375rem;
+  line-height: 1.45;
+  color: var(--texto-escuro-sobre-tinta);
+  max-width: 34ch;
+}
+
+.contato_lista li {
+  border-top: 1px solid #34332f;
+}
+
+.contato_lista li:last-child {
+  border-bottom: 1px solid #34332f;
+}
+
+.contato_lista a {
+  display: flex;
+  align-items: center;
+  min-height: 76px;
+  font-size: clamp(1.375rem, 2.4vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  color: #fff;
+  overflow-wrap: anywhere;
+  background-image: linear-gradient(var(--sinal-claro), var(--sinal-claro));
+  background-repeat: no-repeat;
+  background-position: 0 calc(100% - 18px);
+  background-size: 0% 2px;
+}
+
+.contato_lista a:hover,
+.contato_lista a:focus-visible {
+  background-size: 100% 2px;
+  color: var(--sinal-claro);
+}
+
+.contato_copy {
+  grid-column: 1 / -1;
+  padding-top: 24px;
+  font-size: 1rem;
+  color: var(--texto-escuro-sobre-tinta);
+}
+
+@media (max-width: 900px) {
+  .contato {
+    padding-top: 48px;
+  }
+
+  .contato_conteudo {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-top: 32px;
+  }
+
+  .contato_texto {
+    font-size: 1.125rem;
+  }
+
+  .contato_lista a {
+    min-height: 64px;
+  }
+}
+
+/* ---------- Copiar e-mail: leitura de confirmação ---------- */
+.contato_email {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 16px;
+}
+
+.contato_email a {
+  flex: 1 1 auto;
+}
+
+.copiar {
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid #3f3e3a;
+  border-radius: 6px;
+  background: none;
+  color: var(--texto-escuro-sobre-tinta);
+  font: inherit;
+  font-size: 0.8125rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.copiar:hover {
+  border-color: var(--sinal-claro);
+  color: var(--sinal-claro);
+}
+
+.copiar[data-estado="copiado"] {
+  border-color: var(--sinal-claro);
+  background-color: var(--sinal-claro);
+  color: var(--tinta);
+}
+
+.copiar:focus-visible {
+  outline: 2px solid var(--sinal-claro);
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .contato_email {
+    padding-bottom: 14px;
+  }
+}

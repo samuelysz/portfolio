@@ -1,0 +1,497 @@
+/* ==========================================================
+   Movimento: a linha de sinal se desenha, os picos acendem.
+   Tudo em transform, opacity e clip-path.
+   ========================================================== */
+:root {
+  --ease-chegada: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-suave: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id],
+footer[id] {
+  scroll-margin-top: 72px;
+}
+
+::selection {
+  background-color: var(--sinal);
+  color: #fff;
+}
+
+/* ---------- Entrada da introdução ---------- */
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes surgir-personagem {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* A linha se desenha da esquerda para a direita */
+@keyframes desenhar {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes acender {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.onda_personagem {
+  animation: surgir-personagem 1.4s var(--ease-suave) backwards;
+}
+
+.onda_sinal {
+  animation: desenhar 1.8s var(--ease-suave) 0.3s backwards;
+}
+
+.harmonico_ponto {
+  animation: acender 0.5s var(--ease-chegada) backwards;
+  transition: transform 0.35s var(--ease-chegada), box-shadow 0.35s var(--ease-chegada);
+}
+
+/* Passar o mouse num ofício acende o pico dele */
+.harmonico:hover .harmonico_ponto {
+  transform: scale(1.5);
+  box-shadow: 0 0 0 4px var(--papel), 0 0 0 8px rgba(42, 71, 184, 0.18);
+}
+
+.harmonico_nota {
+  animation: surgir 0.8s var(--ease-suave) backwards;
+}
+
+.harmonico:nth-child(1) .harmonico_ponto { animation-delay: 0.85s; }
+.harmonico:nth-child(1) .harmonico_nota { animation-delay: 0.95s; }
+.harmonico:nth-child(2) .harmonico_ponto { animation-delay: 1.1s; }
+.harmonico:nth-child(2) .harmonico_nota { animation-delay: 1.2s; }
+.harmonico:nth-child(3) .harmonico_ponto { animation-delay: 1.35s; }
+.harmonico:nth-child(3) .harmonico_nota { animation-delay: 1.45s; }
+
+.onda_texto {
+  animation: surgir 1.1s var(--ease-suave) 0.4s backwards;
+}
+
+.onda_cta {
+  animation: surgir 0.9s var(--ease-suave) 1.7s backwards;
+}
+
+.onda_eixo {
+  animation: aparecer 1s ease 1.2s both;
+}
+
+/* ---------- Painel em profundidade: passagem para a Experiência ----------
+   No desktop o hero fica preso na tela por um trecho de rolagem:
+   1. o painel se abre em planos (vista explodida);
+   2. ele se fecha enquanto a onda se acalma até virar linha reta,
+      com os três pontos sobre ela, e o resto se apaga;
+   3. a linha reta segue para a linha do tempo da Experiência.
+   Só com CSS; sem suporte ou com movimento reduzido, o hero fica estático. */
+@keyframes painel {
+  0% {
+    --explosao: 0;
+    --achata: 0;
+    --some: 0;
+    --alinha: 0;
+    --chega: 0;
+  }
+  32% {
+    --explosao: 1;
+    --achata: 0;
+    --some: 0;
+  }
+  /* primeiro o personagem, o título e as notas se recolhem */
+  40% {
+    --explosao: 1;
+    --achata: 0;
+    --some: 0;
+  }
+  54% {
+    --some: 1;
+    --achata: 0;
+  }
+  /* depois a onda se acalma até a linha reta, e o painel se fecha */
+  72% {
+    --explosao: 0;
+    --achata: 1;
+    --alinha: 0;
+    --chega: 0;
+  }
+  /* os pontos se alinham às colunas dos anos, e o quadro final entra */
+  84% {
+    --alinha: 1;
+  }
+  92%,
+  100% {
+    --explosao: 0;
+    --achata: 1;
+    --some: 1;
+    --alinha: 1;
+    --chega: 1;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
+    .onda {
+      /* altura do palco + o trecho em que ele fica preso */
+      --altura-palco: calc(min(100vw, var(--largura)) * 820 / 1440);
+      height: calc(var(--altura-palco) + 130vh);
+    }
+
+    .onda_palco {
+      position: sticky;
+      /* abaixo do cabeçalho; em telas baixas, alinha a base do palco à da tela */
+      top: min(73px, calc(100vh - var(--altura-palco)));
+    }
+
+    .onda_cena {
+      animation: painel linear both;
+      animation-timeline: --hero;
+      animation-range: contain 0% contain 100%;
+    }
+  }
+
+  /* Celular: o hero também fica preso; o conteúdo se recolhe e
+     entra o quadro final com a linha do tempo vertical */
+  @media (prefers-reduced-motion: no-preference) and (max-width: 900px) {
+    .onda {
+      /* --altura-palco-movel e --altura-cabecalho vêm do JS */
+      height: calc(var(--altura-palco-movel, 100svh) + 110svh);
+    }
+
+    .onda_palco {
+      position: sticky;
+      top: min(var(--altura-cabecalho, 61px), calc(100svh - var(--altura-palco-movel, 100svh)));
+    }
+
+    .onda_cena {
+      animation: painel-movel linear both;
+      animation-timeline: --hero;
+      /* começa quando o palco prende (se ele for mais alto que a tela,
+         isso acontece depois de rolar a diferença) */
+      animation-range: contain max(0px, calc(var(--altura-palco-movel, 0px) - 100svh)) contain 100%;
+    }
+
+    .onda_personagem {
+      animation: aparecer 1.4s var(--ease-suave) backwards;
+    }
+  }
+}
+
+@keyframes painel-movel {
+  0%,
+  8% {
+    --some: 0;
+    --chega: 0;
+  }
+  48% {
+    --some: 1;
+    --chega: 0;
+  }
+  85%,
+  100% {
+    --some: 1;
+    --chega: 1;
+  }
+}
+
+/* ---------- Feedback de interação ---------- */
+.header_menu a {
+  transition: color 0.2s ease;
+}
+
+.header_menu a::after {
+  transition: transform 0.35s var(--ease-chegada);
+}
+
+.botao-sinal {
+  transition: background-color 0.25s ease, transform 0.15s var(--ease-chegada);
+}
+
+.botao-sinal:active,
+.header_menu a:active {
+  transform: scale(0.96);
+}
+
+.harmonico_link,
+.projeto_link {
+  transition: color 0.2s ease, text-underline-offset 0.25s var(--ease-chegada);
+}
+
+.harmonico_link:hover,
+.projeto_link:hover {
+  color: var(--sinal-forte);
+  text-underline-offset: 6px;
+}
+
+/* Passar o mouse num projeto acende o pico dele */
+.projeto_ponto {
+  transition: transform 0.35s var(--ease-chegada), box-shadow 0.35s var(--ease-chegada);
+}
+
+.projeto_ano {
+  transition: color 0.25s ease;
+}
+
+.projeto:hover .projeto_ponto {
+  transform: scale(1.5);
+  box-shadow: 0 0 0 5px var(--papel), 0 0 0 9px rgba(42, 71, 184, 0.18);
+}
+
+.projeto:hover .projeto_ano {
+  color: var(--sinal);
+}
+
+/* O cartão gira para mostrar o verso */
+.trabalho_giro {
+  transition: transform 0.7s var(--ease-chegada);
+}
+
+.trabalho_frente,
+.trabalho_verso {
+  transition: border-color 0.2s ease;
+}
+
+/* O ponto do botão emite um pulso de sinal ao passar o mouse */
+@keyframes pulso {
+  from {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(3.2);
+  }
+}
+
+.botao-sinal_ponto {
+  position: relative;
+}
+
+.botao-sinal_ponto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0;
+}
+
+.botao-sinal:hover .botao-sinal_ponto::after,
+.botao-sinal:focus-visible .botao-sinal_ponto::after {
+  animation: pulso 0.9s var(--ease-chegada);
+}
+
+.contato_lista a {
+  transition: background-size 0.4s var(--ease-chegada), color 0.2s ease;
+}
+
+/* Foco visível */
+.header_marca:focus-visible,
+.header_menu a:focus-visible,
+.botao-sinal:focus-visible,
+.harmonico_link:focus-visible,
+.projeto_link:focus-visible,
+.trabalho:focus-visible {
+  outline: 2px solid var(--sinal);
+  outline-offset: 3px;
+}
+
+.contato_lista a:focus-visible {
+  outline: 2px solid var(--sinal-claro);
+  outline-offset: 4px;
+}
+
+/* ---------- Revelação ao rolar (só com JS ativo) ----------
+   A lista é a mesma de js/animacoes.js. */
+.js-anima :where(.secao_cabeca, .projeto, .anotacao, .cursos, .contato_cabeca, .contato_lista li) {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.9s var(--ease-suave), transform 0.9s var(--ease-suave);
+  transition-delay: var(--atraso, 0s);
+}
+
+.js-anima .revelado {
+  opacity: 1;
+  transform: none;
+}
+
+/* Títulos das seções sobem suavemente (sem máscara: nada corta os acentos) */
+.js-anima .secao_titulo {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s var(--ease-suave) 0.1s, transform 1s var(--ease-suave) 0.1s;
+}
+
+.js-anima .revelado .secao_titulo {
+  opacity: 1;
+  transform: none;
+}
+
+/* Pontos da linha do tempo acendem da esquerda para a direita,
+   acompanhando o traço que se desenha */
+.js-anima .projeto_ponto {
+  opacity: 0;
+  scale: 0;
+  transition: opacity 0.4s ease, scale 0.5s var(--ease-chegada);
+}
+
+.js-anima .projeto.revelado .projeto_ponto {
+  opacity: 1;
+  scale: 1;
+}
+
+.js-anima .projeto:nth-child(3) .projeto_ponto { transition-delay: 0.45s; }
+.js-anima .projeto:nth-child(2) .projeto_ponto { transition-delay: 0.85s; }
+.js-anima .projeto:nth-child(1) .projeto_ponto { transition-delay: 1.25s; }
+
+/* Linhas de sinal das seções se desenham ao entrar na tela */
+.js-anima .desenha {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.6s var(--ease-suave);
+}
+
+.js-anima .desenha.revelado {
+  clip-path: inset(0 0 0 0);
+}
+
+/* As hastes dos cursos crescem até a altura das horas */
+.js-anima .curso_haste {
+  transform: scaleY(0);
+  transition: transform 1.1s var(--ease-suave);
+}
+
+.js-anima .cursos.revelado .curso_haste {
+  transform: scaleY(1);
+}
+
+.js-anima .cursos.revelado .curso:nth-child(2) .curso_haste { transition-delay: 0.1s; }
+.js-anima .cursos.revelado .curso:nth-child(3) .curso_haste { transition-delay: 0.2s; }
+.js-anima .cursos.revelado .curso:nth-child(4) .curso_haste { transition-delay: 0.3s; }
+
+@media (max-width: 900px) {
+  .onda_personagem {
+    animation-name: aparecer;
+  }
+
+  .js-anima .curso_haste {
+    transform: scaleX(0);
+  }
+
+  .js-anima .cursos.revelado .curso_haste {
+    transform: scaleX(1);
+  }
+}
+
+/* ---------- Movimento reduzido: sem deslocamento nem desenho ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .onda_personagem,
+  .onda_texto,
+  .onda_cta,
+  .onda_eixo,
+  .harmonico_nota,
+  .harmonico_ponto {
+    animation: aparecer 0.3s ease both;
+  }
+
+  .onda_sinal {
+    animation: none;
+  }
+
+  .js-anima .desenha,
+  .js-anima .desenha.revelado {
+    clip-path: none;
+  }
+
+  .js-anima .curso_haste,
+  .js-anima .cursos.revelado .curso_haste {
+    transform: none;
+  }
+
+  .js-anima :where(.secao_cabeca, .projeto, .anotacao, .cursos, .contato_cabeca, .contato_lista li) {
+    transform: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .botao-sinal:active,
+  .header_menu a:active,
+  .projeto:hover .projeto_ponto,
+  .harmonico:hover .harmonico_ponto {
+    transform: none;
+  }
+
+  /* Sem giro: o verso aparece por troca suave */
+  .trabalho_giro,
+  .trabalho:hover .trabalho_giro,
+  .trabalho:focus-visible .trabalho_giro,
+  .trabalho_verso {
+    transform: none;
+  }
+
+  .trabalho_verso {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .trabalho:hover .trabalho_verso,
+  .trabalho:focus-visible .trabalho_verso {
+    opacity: 1;
+  }
+
+  .js-anima .secao_titulo,
+  .js-anima .revelado .secao_titulo {
+    transform: none;
+  }
+
+  .js-anima .projeto_ponto {
+    scale: 1;
+  }
+
+  .botao-sinal:hover .botao-sinal_ponto::after,
+  .botao-sinal:focus-visible .botao-sinal_ponto::after {
+    animation: none;
+  }
+}
