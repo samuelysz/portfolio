@@ -24,6 +24,15 @@
     box-sizing: border-box;
   }
 
+  /* o tema do shadcn pinta bordas e contornos de todos os elementos
+     (border-border, outline-ring); na landing eles seguem o texto,
+     como no navegador */
+  :where(.header, main, .contato),
+  :where(.header, main, .contato) * {
+    border-color: currentColor;
+    outline-color: currentColor;
+  }
+
   img,
   svg,
   video,
