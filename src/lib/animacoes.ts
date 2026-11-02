@@ -12,7 +12,6 @@ export function iniciarAnimacoes() {
   destacarSecaoNoMenu();
   copiarEmail();
   relogioDF();
-  painelEmProfundidade();
   medirHeroNoCelular();
 }
 
@@ -138,75 +137,6 @@ function relogioDF() {
     atualizar();
     setInterval(atualizar, 60000);
   }, 60000 - (Date.now() % 60000));
-}
-
-// Painel em profundidade: o hero inclina alguns graus seguindo o mouse.
-// Amortecido, só em telas com mouse, desligado com movimento reduzido.
-function painelEmProfundidade() {
-  const palco = document.querySelector<HTMLElement>(".onda_palco");
-  const cena = document.querySelector<HTMLElement>(".onda_cena");
-  if (!palco || !cena) return;
-  const comMouse = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 901px)");
-  const reduzir = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const MAX_Y = 5; // graus, eixo vertical (esquerda/direita)
-  const MAX_X = 3.5; // graus, eixo horizontal (cima/baixo)
-  let alvoX = 0,
-    alvoY = 0,
-    atualX = 0,
-    atualY = 0,
-    quadro = 0;
-
-  function passo() {
-    atualX += (alvoX - atualX) * 0.08;
-    atualY += (alvoY - atualY) * 0.08;
-    cena!.style.setProperty("--rx", atualX.toFixed(3) + "deg");
-    cena!.style.setProperty("--ry", atualY.toFixed(3) + "deg");
-    if (Math.abs(alvoX - atualX) > 0.005 || Math.abs(alvoY - atualY) > 0.005) {
-      quadro = requestAnimationFrame(passo);
-    } else {
-      quadro = 0;
-    }
-  }
-
-  const iniciar = () => {
-    if (!quadro) quadro = requestAnimationFrame(passo);
-  };
-
-  // Escuta a janela inteira: o mouse nos cantos da tela ou sobre o
-  // cabeçalho continua inclinando o painel, sem voltar ao centro.
-  function voltarAoCentro() {
-    alvoX = 0;
-    alvoY = 0;
-    iniciar();
-  }
-
-  let heroVisivel = true;
-  new IntersectionObserver(([entrada]) => {
-    heroVisivel = entrada.isIntersecting;
-    if (!heroVisivel) voltarAoCentro();
-  }).observe(palco);
-
-  const limitar = (v: number) => Math.max(-0.5, Math.min(0.5, v));
-
-  window.addEventListener(
-    "pointermove",
-    (e) => {
-      if (!comMouse.matches || reduzir.matches || !heroVisivel || e.pointerType !== "mouse") return;
-      const r = palco.getBoundingClientRect();
-      // horizontal: relativo à largura da janela (os cantos da tela são o máximo)
-      const px = limitar(e.clientX / window.innerWidth - 0.5);
-      // vertical: relativo ao palco, limitado nas bordas
-      const py = limitar((e.clientY - r.top) / r.height - 0.5);
-      alvoY = px * 2 * MAX_Y;
-      alvoX = -py * 2 * MAX_X;
-      iniciar();
-    },
-    { passive: true }
-  );
-
-  // Só volta ao centro quando o mouse sai da janela
-  document.documentElement.addEventListener("mouseleave", voltarAoCentro);
-  window.addEventListener("blur", voltarAoCentro);
 }
 
 // Passagem no celular: o CSS precisa da altura real do hero empilhado

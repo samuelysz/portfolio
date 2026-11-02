@@ -44,7 +44,7 @@
 /* ==========================================================
    Painel em profundidade: os elementos do hero vivem em
    planos de profundidade dentro de uma cena 3D.
-   --rx/--ry vêm do mouse (JS); --explosao vem da rolagem (CSS).
+   --explosao vem da rolagem (CSS). O cursor fica só com o fundo (Flow Field).
    ========================================================== */
 @property --explosao {
   syntax: "<number>";
@@ -84,11 +84,8 @@
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
-  transform:
-    /* a inclinação do mouse se desfaz conforme a vista explode,
-       para as linhas não entortarem durante a rolagem */
-    rotateX(calc(var(--rx, 0deg) * (1 - var(--explosao)) * (1 - var(--achata)) + var(--explosao) * 6deg))
-    rotateY(calc(var(--ry, 0deg) * (1 - var(--explosao)) * (1 - var(--achata))));
+  /* o painel tomba alguns graus enquanto a vista explode na rolagem */
+  transform: rotateX(calc(var(--explosao) * 6deg));
 }
 
 /* A linha reta em que a onda se acalma, na mesma base (y 430 de 820) */
