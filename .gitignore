@@ -12,3 +12,6 @@ node_modules/
 .claude/
 .impeccable/
 skills-lock.json
+
+# Build do Vite
+dist/

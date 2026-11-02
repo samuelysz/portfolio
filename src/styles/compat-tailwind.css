@@ -1,0 +1,37 @@
+/* Compatibilidade com o reset do Tailwind (preflight).
+   A landing foi feita sobre os padrões do navegador; o preflight muda
+   três deles e alteraria medidas e quebras. Aqui eles voltam ao padrão.
+   Fica na camada "base", depois do preflight: as classes utilitárias do
+   Tailwind/shadcn continuam vencendo, e os estilos da landing também. */
+@layer base {
+  html,
+  :host {
+    line-height: normal;
+  }
+
+  *,
+  ::before,
+  ::after,
+  ::backdrop,
+  ::file-selector-button {
+    box-sizing: content-box;
+  }
+
+  /* no navegador, botões e seletores já usam border-box */
+  button,
+  select,
+  input:is([type="button"], [type="submit"], [type="reset"], [type="checkbox"], [type="radio"]) {
+    box-sizing: border-box;
+  }
+
+  img,
+  svg,
+  video,
+  canvas,
+  audio,
+  iframe,
+  embed,
+  object {
+    vertical-align: baseline;
+  }
+}

@@ -1,0 +1,9 @@
+/* Estilos originais da landing (antes em css/style.css), na mesma ordem.
+   Ficam fora das camadas do Tailwind, então têm prioridade sobre elas. */
+@import "./global.css";
+@import "./header.css";
+@import "./introducao.css";
+@import "./experiencia.css";
+@import "./formacao.css";
+@import "./footer.css";
+@import "./animacoes.css";
