@@ -14,10 +14,10 @@ export function Hero() {
           <div className="onda_grade" aria-hidden="true"></div>
           <img
             className="onda_personagem"
-            src="./img/personagem1-recorte.png"
+            src="./img/personagem1-sem-fundo.png"
             alt="Ilustração 3D de Samuel Souza"
-            width="1657"
-            height="949"
+            width="1656"
+            height="950"
             fetchPriority="high"
           />
 

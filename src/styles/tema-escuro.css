@@ -9,17 +9,8 @@
   :root:not([data-tema="claro"]) .header_marca img {
     filter: brightness(0) invert(0.92);
   }
-
-  /* Recorte com a borda afinada: sem a franja clara no cabelo */
-  :root:not([data-tema="claro"]) .onda_personagem {
-    content: url("/img/personagem1-recorte-tela.png");
-  }
 }
 
 :root[data-tema="escuro"] .header_marca img {
   filter: brightness(0) invert(0.92);
-}
-
-:root[data-tema="escuro"] .onda_personagem {
-  content: url("/img/personagem1-recorte-tela.png");
 }
