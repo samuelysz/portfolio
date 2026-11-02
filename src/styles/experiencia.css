@@ -249,3 +249,51 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Quatro anos lado a lado: no desktop estreito, menos margem interna
+   para o texto de cada coluna respirar */
+@media (min-width: 901px) and (max-width: 1279px) {
+  .projeto {
+    padding: 0 14px;
+  }
+
+  .projeto_titulo {
+    font-size: 1.3125rem;
+  }
+}
+
+/* ---------- Desktop: as quatro colunas compartilham as mesmas linhas ----------
+   Com subgrid, título, cargo, texto, etiquetas, trabalhos e link de cada
+   experiência ficam na mesma altura nas quatro colunas, como uma tabela. */
+@media (min-width: 901px) {
+  .projetos {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(8, auto);
+  }
+
+  /* o HTML vai do mais novo ao mais antigo; a linha lê de 2022 a 2026 */
+  .projeto:nth-child(1) { grid-column: 4; }
+  .projeto:nth-child(2) { grid-column: 3; }
+  .projeto:nth-child(3) { grid-column: 2; }
+  .projeto:nth-child(4) { grid-column: 1; }
+
+  .projeto {
+    grid-row: 1 / span 8;
+    padding: 0 clamp(14px, 1.6vw, 24px);
+    display: grid;
+    grid-template-rows: subgrid;
+    align-items: start;
+    justify-items: start;
+  }
+
+  .projeto_ano { grid-row: 1; justify-self: center; }
+  .projeto_ponto { grid-row: 2; justify-self: center; }
+  .projeto_titulo { grid-row: 3; }
+  .projeto_papel { grid-row: 4; }
+  .projeto_texto { grid-row: 5; }
+  .etiquetas { grid-row: 6; }
+  .trabalhos { grid-row: 7; }
+  .projeto_link { grid-row: 7; }
+  .trabalhos ~ .projeto_link { grid-row: 8; }
+}

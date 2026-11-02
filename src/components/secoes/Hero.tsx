@@ -65,13 +65,14 @@ export function Hero() {
           {/* Quadro final da passagem para a Experiência (repete dados da linha do tempo) */}
           <div className="onda_passagem" aria-hidden="true">
             <p className="passagem_cabeca">
-              <span className="passagem_rotulo">Trajetória · 3 projetos</span>
-              <span className="passagem_anos">2024 — 2026</span>
+              <span className="passagem_rotulo">Trajetória · 4 experiências</span>
+              <span className="passagem_anos">2022 — 2026</span>
             </p>
             <ol className="passagem_marcos">
-              <li><span className="passagem_ano">2024</span>Change &amp; Change</li>
+              <li><span className="passagem_ano">2022</span>Change &amp; Change</li>
+              <li><span className="passagem_ano">2024</span>Bikcraft</li>
               <li><span className="passagem_ano">2025</span>S Design</li>
-              <li><span className="passagem_ano">2026</span>Bikcraft</li>
+              <li><span className="passagem_ano">2026</span>Medware</li>
             </ol>
           </div>
         </div>

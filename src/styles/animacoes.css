@@ -419,9 +419,10 @@ footer[id] {
   scale: 1;
 }
 
-.js-anima .projeto:nth-child(3) .projeto_ponto { transition-delay: 0.45s; }
-.js-anima .projeto:nth-child(2) .projeto_ponto { transition-delay: 0.85s; }
-.js-anima .projeto:nth-child(1) .projeto_ponto { transition-delay: 1.25s; }
+.js-anima .projeto:nth-child(4) .projeto_ponto { transition-delay: 0.45s; }
+.js-anima .projeto:nth-child(3) .projeto_ponto { transition-delay: 0.75s; }
+.js-anima .projeto:nth-child(2) .projeto_ponto { transition-delay: 1.05s; }
+.js-anima .projeto:nth-child(1) .projeto_ponto { transition-delay: 1.35s; }
 
 /* Linhas de sinal das seções se desenham ao entrar na tela */
 .js-anima .desenha {

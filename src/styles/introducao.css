@@ -192,9 +192,9 @@
 }
 
 /* Picos anotados; --tx é a coluna do ano na linha do tempo */
-.harmonico:nth-child(1) { --tx: 16.67%; }
-.harmonico:nth-child(2) { --tx: 50%; }
-.harmonico:nth-child(3) { --tx: 83.33%; }
+.harmonico:nth-child(1) { --tx: 12.5%; }
+.harmonico:nth-child(2) { --tx: 37.5%; }
+.harmonico:nth-child(3) { --tx: 62.5%; }
 
 /* ---------- Quadro final da passagem ---------- */
 .onda_passagem {
@@ -244,9 +244,27 @@
   white-space: nowrap;
 }
 
-.passagem_marcos li:nth-child(1) { left: 16.67%; }
-.passagem_marcos li:nth-child(2) { left: 50%; }
-.passagem_marcos li:nth-child(3) { left: 83.33%; }
+.passagem_marcos li:nth-child(1) { left: 12.5%; }
+.passagem_marcos li:nth-child(2) { left: 37.5%; }
+.passagem_marcos li:nth-child(3) { left: 62.5%; }
+.passagem_marcos li:nth-child(4) { left: 87.5%; }
+
+/* Quarto ano: os três pontos do Hero ocupam as três primeiras colunas;
+   o ponto de 2026 acende na linha junto com o quadro final */
+@media (min-width: 901px) {
+  .passagem_marcos li:nth-child(4)::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: calc(-2.4cqw - 6px);
+    width: 12px;
+    height: 12px;
+    margin-left: -6px;
+    border-radius: 50%;
+    background-color: var(--sinal);
+    box-shadow: 0 0 0 4px var(--papel);
+  }
+}
 
 .passagem_ano {
   font-size: clamp(1.25rem, 2.2cqw, 2rem);
