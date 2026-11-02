@@ -1,3 +1,5 @@
+import { FaixaTrabalhos } from "@/components/secoes/FaixaTrabalhos";
+
 const BEHANCE = "https://www.behance.net/samuelysz";
 const MEDWARE = "https://www.medware.com.br/";
 
@@ -48,26 +50,6 @@ export function Experiencia() {
               <li>Illustrator</li>
               <li>UX/UI Design</li>
             </ul>
-            <ul className="trabalhos" aria-label="Trabalhos de design gráfico">
-              <li>
-                <a className="trabalho" href={BEHANCE} target="_blank" rel="noopener">
-                  <span className="trabalho_quadro"><span className="trabalho_giro">
-                    <img className="trabalho_frente" src="./img/holy-co.png" alt="Identidade visual Holy co.: logotipo em serifa branca sobre foto em preto e branco de mãos" width="1049" height="830" loading="lazy" />
-                    <img className="trabalho_verso" src="./img/holy-co-2.png" alt="Aplicação da marca Holy co.: camiseta preta com a palavra HOLY em branco" width="930" height="721" loading="lazy" />
-                  </span></span>
-                  <span className="trabalho_nome">Holy co.</span>
-                </a>
-              </li>
-              <li>
-                <a className="trabalho" href={BEHANCE} target="_blank" rel="noopener">
-                  <span className="trabalho_quadro"><span className="trabalho_giro">
-                    <img className="trabalho_frente" src="./img/over-fire.png" alt="Key visual Over Fire: lettering creme em fundo laranja" width="1047" height="819" loading="lazy" />
-                    <img className="trabalho_verso" src="./img/over-fire-2.png" alt="Pôsteres do Culto Over Fire: sábado 16h00 na 70X7 Church" width="931" height="715" loading="lazy" />
-                  </span></span>
-                  <span className="trabalho_nome">Over Fire · Key visual</span>
-                </a>
-              </li>
-            </ul>
             <a className="projeto_link" href={BEHANCE} target="_blank" rel="noopener">Ver trabalhos no Behance</a>
           </li>
 
@@ -100,6 +82,8 @@ export function Experiencia() {
           </li>
         </ol>
       </div>
+
+      <FaixaTrabalhos />
     </section>
   );
 }

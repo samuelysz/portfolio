@@ -297,3 +297,101 @@
   .projeto_link { grid-row: 7; }
   .trabalhos ~ .projeto_link { grid-row: 8; }
 }
+
+/* ---------- Faixa de trabalhos (LogoLoop) ----------
+   Cartões no visual do site passando devagar; ao passar o mouse a faixa
+   para e o cartão cresce por cima dos vizinhos. */
+.faixa-trabalhos {
+  margin-top: 72px;
+  /* sangra até as bordas da tela */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* espaço em cima e embaixo para o cartão crescer sem ser cortado */
+.faixa-trabalhos .logoloop {
+  padding: 32px 0 56px;
+}
+
+.faixa-trabalhos .logoloop__item {
+  position: relative;
+  z-index: 0;
+  transition: z-index 0s 0.35s;
+}
+
+.faixa-trabalhos .logoloop__item:hover,
+.faixa-trabalhos .logoloop__item:focus-within {
+  z-index: 2;
+  transition-delay: 0s;
+}
+
+.faixa-cartao {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+  padding: 10px 10px 14px;
+  border: 1px solid var(--filete);
+  border-radius: 4px;
+  background-color: var(--papel);
+  transform-origin: 50% 60%;
+  transition: transform 0.45s var(--ease-chegada), box-shadow 0.45s var(--ease-chegada), border-color 0.25s ease;
+}
+
+.faixa-cartao img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.faixa-cartao_legenda {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 0 2px;
+  font-size: 0.9375rem;
+  color: var(--anotacao);
+}
+
+.faixa-cartao_legenda strong {
+  font-weight: 600;
+  color: var(--tinta);
+}
+
+/* o cartão apontado cresce e passa por cima dos vizinhos */
+.faixa-cartao:hover,
+.faixa-cartao:focus-visible {
+  transform: scale(1.14);
+  border-color: var(--sinal);
+  box-shadow: 0 18px 40px -16px rgba(20, 20, 20, 0.35);
+}
+
+.faixa-cartao:focus-visible {
+  outline: 2px solid var(--sinal);
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .faixa-trabalhos {
+    margin-top: 48px;
+  }
+
+  .faixa-cartao {
+    width: 220px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faixa-cartao {
+    transition: border-color 0.2s ease;
+  }
+
+  .faixa-cartao:hover,
+  .faixa-cartao:focus-visible {
+    transform: none;
+  }
+}
+
