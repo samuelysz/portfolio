@@ -23,7 +23,8 @@
   z-index: 0;
   height: 100svh;
   margin-bottom: -100svh;
-  color: var(--anotacao-clara);
+  /* cinza das linhas finas: o vento fica abaixo dos rótulos e das guias */
+  color: var(--filete);
   pointer-events: none;
 }
 

@@ -6,7 +6,7 @@ export function Hero() {
     <section className="onda" aria-labelledby="titulo-principal">
       {/* Fundo do Hero: Flow Field original do KokonutUI, atrás de todo o conteúdo */}
       <div className="onda_fundo" aria-hidden="true">
-        <FlowField />
+        <FlowField density={0.55} />
       </div>
 
       <div className="onda_palco">
