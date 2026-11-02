@@ -179,8 +179,10 @@ footer[id] {
 
     .onda_palco {
       position: sticky;
-      /* abaixo do cabeçalho; em telas baixas, alinha a base do palco à da tela */
-      top: min(73px, calc(100vh - var(--altura-palco)));
+      /* abaixo do cabeçalho. Em telas altas (o palco é mais baixo que a
+         área visível) ele fica centrado na altura; em telas baixas, a base
+         do palco se alinha à da tela */
+      top: calc(73px + min((100vh - 73px - var(--altura-palco)) / 2, 100vh - 73px - var(--altura-palco)));
     }
 
     .onda_cena {

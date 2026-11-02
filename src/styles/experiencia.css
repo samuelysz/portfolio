@@ -233,3 +233,19 @@
 .trabalho:hover .trabalho_nome {
   color: var(--sinal);
 }
+
+/* Desktop até 1439px: a coluna do projeto é estreita demais para dois
+   cartões lado a lado; empilhados, cada peça aparece em tamanho legível */
+@media (min-width: 901px) and (max-width: 1439px) {
+  .trabalhos {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+  }
+}
+
+/* Celulares muito estreitos (até 359px): um cartão por linha */
+@media (max-width: 359px) {
+  .trabalhos {
+    grid-template-columns: 1fr;
+  }
+}

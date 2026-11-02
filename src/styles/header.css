@@ -22,10 +22,13 @@
   align-items: center;
   gap: 12px;
   min-height: 44px;
+  min-width: 44px; /* alvo de toque, mesmo só com o monograma */
+  flex: none;
   border-radius: 6px;
 }
 
 .header_marca img {
+  flex: none;
   width: 26px;
   height: 33px;
 }
@@ -211,5 +214,23 @@
 @media (max-width: 900px) {
   .lampada {
     display: none;
+  }
+}
+
+/* Celulares estreitos (até 400px): o menu cabe sem cortar "Contato" */
+@media (max-width: 400px) {
+  .header {
+    gap: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .header_menu a {
+    padding: 0 7px;
+    font-size: 0.9375rem;
+  }
+
+  .header_menu a::before {
+    display: none; /* sem espaço para o LED; o item ativo segue em azul */
   }
 }

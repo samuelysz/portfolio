@@ -22,8 +22,9 @@
   margin: 0 auto;
   padding: 56px var(--margem) 48px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px 100px;
+  /* a lista de canais precisa de mais largura que o título */
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 48px clamp(56px, 6vw, 100px);
   align-items: start;
 }
 
@@ -149,7 +150,7 @@
 
   .contato_canal {
     width: 56px;
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
   }
 
   .contato_acao {
@@ -210,5 +211,18 @@
 @media (max-width: 900px) {
   .contato_email {
     padding-bottom: 14px;
+  }
+}
+
+/* Desktop estreito e tablet deitado (901–1199px): título em cima, canais
+   na largura toda, para o e-mail não encostar no botão de copiar */
+@media (min-width: 901px) and (max-width: 1199px) {
+  .contato_conteudo {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .contato_texto {
+    max-width: 48ch;
   }
 }
