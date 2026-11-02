@@ -5,7 +5,11 @@ const cursos = [
   { horas: 17, nome: "UX & UI Design" },
   { horas: 40, nome: "Algoritmos e Lógica de Programação" },
   { horas: 37, nome: "JavaScript Completo ES6" },
+  { horas: 80, nome: "Python 3" },
 ];
+
+// o curso mais longo define a altura máxima do gráfico
+const maxHoras = Math.max(...cursos.map((c) => c.horas));
 
 export function Formacao() {
   return (
@@ -32,7 +36,7 @@ export function Formacao() {
 
         <figure className="cursos">
           <h3 className="cursos_titulo">Cursos Intensivos</h3>
-          <ol className="cursos_lista">
+          <ol className="cursos_lista" style={vars({ "--max": maxHoras })}>
             {cursos.map((curso) => (
               <li key={curso.nome} className="curso" style={vars({ "--h": curso.horas })}>
                 <span className="curso_haste" aria-hidden="true"></span>
