@@ -142,77 +142,50 @@
   }
 }
 
-/* ---------- Luminária: interruptor do modo papel/tela ----------
-   Só a luminária do Pull Cord (KokonutUI), sem o cartão: pendurada do
-   topo da página, com a cúpula no cabeçalho e a cordinha caindo sobre
-   o Hero. Tamanho, recorte e cores vêm daqui; o componente fica intacto. */
+/* ---------- Botão de tema (Switch Button, KokonutUI) ----------
+   Sol que vira lua; o novo modo se espalha a partir do botão. Aqui ele
+   veste as cores do site no lugar dos cinzas do componente. */
 .header nav {
   margin-left: auto;
 }
 
-.lampada {
-  position: relative;
+.alternar-tema {
   flex: none;
-  width: 48px;
-  margin-left: 28px; /* respiro entre o menu e a luminária */
-  align-self: stretch;
+  width: 44px;
+  height: 44px;
+  margin-left: 12px;
+  border: 1px solid var(--filete);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--tinta);
+  box-shadow: none;
+  transition: border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
 }
 
-.lampada_corpo {
-  position: absolute;
-  top: -14px; /* encosta no topo do cabeçalho (padding de 14px) */
-  left: -48px; /* centraliza a cúpula (x 144 de 288, na metade do tamanho) */
-  transform: scale(0.5);
-  transform-origin: 0 0;
-  pointer-events: none;
+.alternar-tema:hover {
+  border-color: var(--sinal);
+  background-color: transparent;
+  color: var(--sinal);
 }
 
-/* só a cordinha e o pingente recebem o mouse; o resto não cobre o Hero */
-.lampada_corpo svg {
-  pointer-events: none;
+.alternar-tema:active {
+  background-color: var(--papel-escuro);
 }
 
-.lampada_corpo svg g {
-  pointer-events: auto;
+.alternar-tema:focus-visible {
+  outline: 2px solid var(--sinal);
+  outline-offset: 3px;
+  box-shadow: none;
 }
 
-/* sem o texto "Desk lamp · On" do cartão */
-.lampada_corpo > div {
-  display: none;
+.alternar-tema svg {
+  width: 18px;
+  height: 18px;
 }
 
-/* cores do site no lugar dos cinzas e do âmbar do componente */
-.lampada_corpo line {
-  stroke: var(--anotacao);
-}
-
-.lampada_corpo svg > path:nth-of-type(1) {
-  fill: var(--lampada-cupula); /* cúpula */
-}
-
-.lampada_corpo svg > path:nth-of-type(2) {
-  fill: var(--filete); /* lâmpada apagada */
-}
-
-.lampada_corpo svg > path.fill-amber-300 {
-  fill: var(--sinal); /* lâmpada acesa: o azul do sinal */
-}
-
-.lampada_corpo svg > path:nth-of-type(3) {
-  stroke: var(--anotacao); /* cordinha */
-}
-
-.lampada_corpo svg g > rect:last-of-type {
-  fill: var(--lampada-pingente); /* pingente */
-}
-
-.lampada_corpo svg g > rect.fill-none {
-  stroke: var(--sinal); /* foco pelo teclado */
-}
-
-/* O modo tela é só do desktop: no celular e no tablet não há luminária */
+/* O modo tela é só do desktop: no celular e no tablet não há botão */
 @media (max-width: 900px) {
-  .lampada {
+  .alternar-tema {
     display: none;
   }
 }

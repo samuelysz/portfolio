@@ -1,5 +1,5 @@
-// Modo da página: "claro" (papel) ou "escuro" (tela).
-// Sem escolha salva, segue o sistema; a luminária fixa a escolha.
+// Modo da página: "claro" (papel) ou "escuro" (tela). Só no desktop.
+// Sem escolha salva, segue o sistema; o botão de tema fixa a escolha.
 
 export type Tema = "claro" | "escuro";
 
@@ -19,23 +19,14 @@ export function temaAtual(): Tema {
   return temaSalvo() ?? (consultaEscuro().matches ? "escuro" : "claro");
 }
 
-export function aplicarTema(tema: Tema) {
+/** Aplica o modo na hora (a animação de troca fica com o botão). */
+export function definirTema(tema: Tema) {
   const raiz = document.documentElement;
-  const trocar = () => {
-    raiz.dataset.tema = tema;
-    // classe usada pelos componentes shadcn (variante dark:)
-    raiz.classList.toggle("dark", tema === "escuro");
-  };
-
-  // Troca com um esmaecer curto quando o navegador permite;
-  // com movimento reduzido, troca na hora.
-  const reduzir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!reduzir && "startViewTransition" in document) {
-    document.startViewTransition(trocar);
-  } else {
-    trocar();
-  }
-
+  raiz.dataset.tema = tema;
+  // classe usada pelos componentes shadcn/KokonutUI (variante dark:)
+  raiz.classList.toggle("dark", tema === "escuro");
+  // o color-scheme vem do CSS (data-tema), que mantém o celular sempre claro
+  raiz.style.removeProperty("color-scheme");
   try {
     localStorage.setItem(CHAVE, tema);
   } catch {
@@ -47,7 +38,11 @@ export function aplicarTema(tema: Tema) {
 export function aoMudarSistema(callback: (tema: Tema) => void) {
   const consulta = consultaEscuro();
   const ouvir = () => {
-    if (!temaSalvo()) callback(consulta.matches ? "escuro" : "claro");
+    if (!temaSalvo()) {
+      const tema = consulta.matches ? "escuro" : "claro";
+      document.documentElement.classList.toggle("dark", tema === "escuro");
+      callback(tema);
+    }
   };
   consulta.addEventListener("change", ouvir);
   return () => consulta.removeEventListener("change", ouvir);

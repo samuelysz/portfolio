@@ -8,8 +8,8 @@
   <meta name="description" content="Samuel Souza: desenvolvedor front-end, UX/UI e design gráfico, localizado no Distrito Federal.">
   <meta name="color-scheme" content="light dark">
   <script>if ("IntersectionObserver" in window) document.documentElement.classList.add("js-anima");</script>
-  <!-- Modo papel/tela escolhido na luminária, aplicado antes da pintura (sem piscar) -->
-  <script>try { var t = localStorage.getItem("tema"); if (t === "claro" || t === "escuro") document.documentElement.dataset.tema = t; } catch (e) {}</script>
+  <!-- Modo papel/tela escolhido no botão de tema, aplicado antes da pintura (sem piscar) -->
+  <script>try { var t = localStorage.getItem("tema"); if (t === "claro" || t === "escuro") document.documentElement.dataset.tema = t; var e = t ? t === "escuro" : matchMedia("(prefers-color-scheme: dark)").matches; if (e) document.documentElement.classList.add("dark"); } catch (e) {}</script>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">

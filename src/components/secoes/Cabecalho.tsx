@@ -1,4 +1,4 @@
-import { Lampada } from "@/components/secoes/Lampada";
+import { AlternarTema } from "@/components/secoes/AlternarTema";
 
 export function Cabecalho() {
   return (
@@ -14,7 +14,7 @@ export function Cabecalho() {
           <li><a href="#contato">Contato</a></li>
         </ul>
       </nav>
-      <Lampada />
+      <AlternarTema />
     </header>
   );
 }
