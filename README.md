@@ -2,30 +2,40 @@
 
 **🔗 [samuelysz.github.io/portfolio](https://samuelysz.github.io/portfolio/)**
 
-Portfólio pessoal de Samuel Souza, desenvolvedor front-end e designer UX/UI e gráfico, do Distrito Federal.
+Portfólio pessoal de Samuel Souza, desenvolvedor front-end, designer UX/UI e designer gráfico, do Distrito Federal.
 
 ## O conceito: Forma de Onda
 
-O site trata o trabalho como um **sinal**. Na abertura, uma linha azul atravessa a página como a leitura de um instrumento, e cada pico marca um ofício: **Front-end**, **UX/UI** e **Design Gráfico**. O personagem 3D fica no centro, à frente da onda.
+O site trata o trabalho como um **sinal** lido num painel de instrumentos. Na abertura, uma linha azul atravessa a página como a leitura de um osciloscópio, e cada pico marca um ofício: **Front-end**, **UX/UI** e **Design Gráfico**. O personagem 3D fica no centro, à frente da onda.
 
-O visual é limpo e preciso: papel claro, tinta preta, cinzas de anotação e um único azul de sinal. A tipografia é a Fira Sans.
+O visual é limpo e preciso: papel claro, tinta preta, cinzas de anotação e um único azul de sinal, com a tipografia Fira Sans. A mesma onda costura a página inteira, do Hero ao rodapé.
 
 ## Destaques
 
-- **Painel em profundidade.** No desktop, a abertura é feita de planos em 3D que inclinam levemente seguindo o mouse.
-- **Passagem animada.** Ao rolar, o painel se abre em camadas, o conteúdo se recolhe e a onda se acalma até virar uma linha reta. Os três pontos se alinham aos anos da trajetória e levam direto à linha do tempo da Experiência.
-- **Linha do tempo de Experiência.** Os projetos aparecem como picos de sinal: Bikcraft (2026), S Design (2025) e Change & Change (2024).
-- **Cartões que viram.** Os trabalhos de design gráfico da S Design giram ao passar o mouse e mostram a aplicação de cada peça.
-- **Formação em gráfico.** As horas de cada curso viram hastes proporcionais sobre um eixo.
-- **Detalhes de instrumento.** Medidor de leitura no cabeçalho, relógio do DF no eixo da abertura e botão para copiar o e-mail.
+- **Abertura viva.** Um campo de vento suave corre no fundo e desvia do cursor; um clique em área vazia solta uma rajada.
+- **Passagem para a Experiência.** Ao rolar, o painel se abre em camadas, a onda se acalma até virar uma linha reta e os pontos se alinham aos anos da trajetória.
+- **Experiências em cartas.** Medware (2026), S Design (2025), Bikcraft (2024) e Change & Change (2022), cada uma numa carta sob o seu ano na linha do tempo. No celular, as cartas viram uma lista com "Ler mais".
+- **Formação como instrumento.** A graduação em Engenharia de Software tem um medidor de progresso até a conclusão, o inglês aparece numa escala de nível e os cursos concluídos formam um espectro de picos, somando 197 horas.
+- **Contato em canais.** E-mail, telefone, Instagram e Behance como canais de saída (CH 01–04), sob uma linha de sinal que oscila como áudio. O e-mail se copia com um clique.
+- **Modo papel e modo tela.** No desktop, o site segue o tema do sistema, e um botão no cabeçalho alterna entre claro e escuro, com o novo tema se espalhando a partir do botão.
+
+## Feito com
+
+- **[Vite](https://vite.dev/) + [React](https://react.dev/) + TypeScript**
+- **[Tailwind CSS v4](https://tailwindcss.com/)** e **[shadcn/ui](https://ui.shadcn.com/)** como base de componentes
+- **Componentes do [KokonutUI](https://kokonutui.com/)**, instalados pelo shadcn CLI e vestidos com as cores do site:
+  - *Flow Field*, o vento no fundo da abertura;
+  - *Switch Button*, a troca entre os modos claro e escuro;
+  - *Particle Button*, a confirmação ao copiar o e-mail.
+- **CSS moderno:** animações ligadas à rolagem, `@property`, `light-dark()`, subgrid e container queries
+- **Publicado no GitHub Pages** por GitHub Actions
 
 ## Feito com cuidado
 
-- HTML, CSS e JavaScript puros, sem frameworks nem dependências.
-- As animações usam só propriedades leves, que rodam a 60 fps.
-- Layout próprio para o celular, com a onda e a linha do tempo redesenhadas para a tela vertical.
-- Respeita a preferência de **movimento reduzido**: o conteúdo continua completo, sem as animações.
-- Navegação por teclado com foco visível e textos alternativos nas imagens.
+- **Responsivo de 320px a 2560px**, com layouts próprios para celular, tablet e desktop.
+- **Animações leves,** que rodam a 60 fps e param quando saem da tela.
+- **Movimento reduzido respeitado:** o conteúdo continua completo, sem as animações.
+- **Acessibilidade:** navegação por teclado com foco visível, textos alternativos nas imagens e controles anunciados corretamente por leitores de tela.
 
 ## Contato
 
