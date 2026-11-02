@@ -12,7 +12,7 @@
 
   /* Recorte com a borda afinada: sem a franja clara no cabelo */
   :root:not([data-tema="claro"]) .onda_personagem {
-    content: url("/img/personagem1-recorte-escuro.png");
+    content: url("/img/personagem1-recorte-tela.png");
   }
 }
 
@@ -21,5 +21,5 @@
 }
 
 :root[data-tema="escuro"] .onda_personagem {
-  content: url("/img/personagem1-recorte-escuro.png");
+  content: url("/img/personagem1-recorte-tela.png");
 }

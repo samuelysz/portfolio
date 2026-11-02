@@ -134,6 +134,7 @@
   position: relative;
   flex: none;
   width: 48px;
+  margin-left: 28px; /* respiro entre o menu e a luminária */
   align-self: stretch;
 }
 

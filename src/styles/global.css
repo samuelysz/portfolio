@@ -25,6 +25,8 @@
   --halo-sinal: light-dark(rgba(42, 71, 184, 0.18), rgba(138, 162, 255, 0.24));
   --cabecalho-fundo: light-dark(rgba(241, 240, 236, 0.9), rgba(17, 17, 16, 0.88));
   /* luminária: no escuro a luz está apagada, então a cúpula fica apagada */
+  /* fundo animado do Hero (Flow Field): no escuro, bem apagado */
+  --fluxo: light-dark(#c9c7bf, #242422);
   --lampada-cupula: light-dark(#141414, #3d3c38);
   --lampada-pingente: light-dark(#141414, #8f8d86);
 

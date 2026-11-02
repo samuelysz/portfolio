@@ -24,7 +24,7 @@
   height: 100svh;
   margin-bottom: -100svh;
   /* cinza das linhas finas: o vento fica abaixo dos rótulos e das guias */
-  color: var(--filete);
+  color: var(--fluxo);
   pointer-events: none;
 }
 
