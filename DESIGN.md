@@ -67,6 +67,7 @@ rounded:
   etiqueta: "3px"
   miniatura: "4px"
   link: "6px"
+  carta: "12px"
   pilula: "999px"
 spacing:
   xs: "8px"

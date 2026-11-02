@@ -11,6 +11,26 @@
   margin-top: 48px;
 }
 
+/* No desktop as duas leituras dividem as mesmas linhas (título, detalhe,
+   medidor, nota): as réguas ficam na mesma altura */
+@media (min-width: 901px) {
+  .formacao_leituras {
+    grid-template-rows: auto auto auto auto auto;
+  }
+
+  .anotacao.leitura {
+    display: grid;
+    grid-row: span 5;
+    grid-template-rows: subgrid;
+    row-gap: 6px;
+    align-content: start;
+  }
+
+  .leitura .anotacao_valor {
+    align-self: end; /* os dois títulos assentam na mesma linha */
+  }
+}
+
 .anotacao {
   display: flex;
   flex-direction: column;

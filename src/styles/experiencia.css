@@ -286,7 +286,7 @@
 
   .projetos {
     flex-direction: column;
-    gap: 64px;
+    gap: 40px;
   }
 
   .projeto {
