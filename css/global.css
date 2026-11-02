@@ -1,0 +1,174 @@
+/* ==========================================================
+   Base: papel técnico, tinta, anotações e um só sinal azul.
+   ========================================================== */
+:root {
+  --papel: #f1f0ec;
+  --papel-escuro: #e6e4de;
+  --tinta: #141414;
+  --grade: #d9d7d0;
+  --filete: #c9c7bf;
+  --anotacao: #6d6b65;
+  --anotacao-clara: #9a988f;
+  --sinal: #2a47b8;
+  --sinal-forte: #1f3790;
+  --sinal-claro: #8aa2ff;
+  --texto-escuro-sobre-tinta: #b3b1aa;
+
+  --margem: 64px;
+  --largura: 1440px;
+}
+
+body {
+  font-family: "Fira Sans", Arial, sans-serif;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  margin: 0;
+  padding: 0;
+  color: var(--tinta);
+  background-color: var(--papel);
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Texto só para leitores de tela */
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Seções: título à esquerda, texto à direita ---------- */
+.secao {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 120px var(--margem) 40px;
+}
+
+.secao_cabeca {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px 100px;
+  align-items: end;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--tinta);
+}
+
+.secao_titulo {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.secao_texto {
+  font-size: 1.375rem;
+  line-height: 1.45;
+  color: #3c3a36;
+  max-width: 44ch;
+}
+
+.secao_texto strong {
+  color: var(--tinta);
+  font-weight: 600;
+}
+
+/* Rótulo de anotação, como num gráfico de instrumento */
+.anotacao_rotulo,
+.harmonico_rotulo,
+.cursos_titulo,
+.cursos_legenda,
+.onda_eixo {
+  font-size: 0.8125rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--anotacao);
+  font-weight: 400;
+}
+
+/* ---------- Botão de sinal (ação principal) ---------- */
+.botao-sinal {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 0 28px;
+  border-radius: 999px;
+  background-color: var(--sinal);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.botao-sinal_ponto {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.botao-sinal:hover {
+  background-color: var(--sinal-forte);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --margem: 24px;
+  }
+
+  .secao {
+    padding-top: 80px;
+  }
+
+  .secao_cabeca {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .secao_texto {
+    font-size: 1.125rem;
+  }
+}

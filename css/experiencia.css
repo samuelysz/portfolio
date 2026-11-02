@@ -1,0 +1,235 @@
+/* ==========================================================
+   Experiência: linha do tempo com um pico por projeto.
+   O HTML vem do mais novo para o mais antigo; no desktop a
+   linha lê da esquerda (2024) para a direita (2026).
+   ========================================================== */
+.linha-tempo {
+  position: relative;
+  margin-top: 8px;
+}
+
+.linha-tempo_sinal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 72px;
+  width: 100%;
+  height: 140px;
+  overflow: visible;
+}
+
+.linha-tempo_sinal path,
+.contato_sinal path {
+  fill: none;
+  stroke: var(--sinal);
+  stroke-width: 2.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.projetos {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.projeto {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 32px;
+}
+
+.projeto_ano {
+  align-self: center;
+  height: 72px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 6px;
+  font-size: 2.25rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.projeto_ponto {
+  align-self: center;
+  width: 14px;
+  height: 14px;
+  margin-top: 13px;
+  border-radius: 50%;
+  background-color: var(--sinal);
+  box-shadow: 0 0 0 5px var(--papel);
+}
+
+.projeto_titulo {
+  margin-top: 132px;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.projeto_papel {
+  margin-top: 4px;
+  font-size: 1.0625rem;
+  color: var(--anotacao);
+}
+
+.projeto_texto {
+  margin-top: 16px;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #3c3a36;
+  max-width: 38ch;
+}
+
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.etiquetas li {
+  padding: 3px 9px;
+  border: 1px solid var(--filete);
+  border-radius: 3px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #3c3a36;
+}
+
+.projeto_link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 12px;
+  font-weight: 600;
+  color: var(--sinal);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.projeto_link::after {
+  content: "";
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  margin-left: 6px;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9 9 3M4.5 3H9v4.5'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9 9 3M4.5 3H9v4.5'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+/* ---------- Celular: a linha corre na vertical pela margem ---------- */
+@media (max-width: 900px) {
+  .linha-tempo {
+    margin-top: 32px;
+    padding-left: 28px;
+    border-left: 2px solid var(--sinal);
+  }
+
+  .linha-tempo_sinal {
+    display: none;
+  }
+
+  .projetos {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .projeto {
+    position: relative;
+    padding: 0;
+    border-left: 0;
+  }
+
+  .projeto_ano {
+    align-self: flex-start;
+    height: auto;
+    padding: 0;
+    font-size: 1.75rem;
+  }
+
+  .projeto_ponto {
+    position: absolute;
+    left: -36px;
+    top: 10px;
+    margin: 0;
+  }
+
+  .projeto_titulo {
+    margin-top: 8px;
+  }
+}
+
+/* ---------- Trabalhos de design gráfico (S Design) ---------- */
+.trabalhos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.trabalho {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 4px;
+}
+
+/* Cartão que gira: frente = peça principal, verso = aplicação */
+.trabalho_quadro {
+  position: relative;
+  display: block;
+  aspect-ratio: 5 / 4;
+  perspective: 900px;
+  border-radius: 4px;
+}
+
+.trabalho_giro {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.trabalho_frente,
+.trabalho_verso {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid var(--filete);
+  border-radius: 4px;
+  background-color: var(--papel-escuro);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.trabalho_verso {
+  transform: rotateY(180deg);
+}
+
+.trabalho:hover .trabalho_giro,
+.trabalho:focus-visible .trabalho_giro {
+  transform: rotateY(180deg);
+}
+
+.trabalho_nome {
+  font-size: 0.875rem;
+  line-height: 1.3;
+  color: #3c3a36;
+}
+
+.trabalho:hover .trabalho_frente,
+.trabalho:hover .trabalho_verso {
+  border-color: var(--sinal);
+}
+
+.trabalho:hover .trabalho_nome {
+  color: var(--sinal);
+}

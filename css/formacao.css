@@ -1,0 +1,187 @@
+/* ==========================================================
+   Formação: anotações fixas no eixo + gráfico dos cursos,
+   com a altura de cada pico proporcional às horas.
+   ========================================================== */
+.formacao_grade {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 100px;
+  margin-top: 48px;
+}
+
+.formacao_fixos {
+  display: flex;
+  flex-direction: column;
+}
+
+.anotacao {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 0;
+  border-top: 1px solid var(--filete);
+}
+
+.anotacao:last-child {
+  border-bottom: 1px solid var(--filete);
+}
+
+.anotacao_valor {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.anotacao_extra {
+  font-size: 1.0625rem;
+  color: var(--anotacao);
+}
+
+/* Gráfico dos cursos */
+.cursos_lista {
+  --altura: 220px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+/* Eixo do gráfico */
+.cursos_lista::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--altura);
+  height: 2px;
+  background-color: var(--sinal);
+}
+
+.curso {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: calc(var(--altura) + 20px);
+}
+
+.curso_haste {
+  position: absolute;
+  left: 6px;
+  top: calc(var(--altura) - var(--altura) * var(--h) / 40);
+  width: 2px;
+  height: calc(var(--altura) * var(--h) / 40);
+  background-color: var(--sinal);
+  transform-origin: bottom;
+}
+
+.curso_haste::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: -7px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--sinal);
+  box-shadow: 0 0 0 4px var(--papel);
+}
+
+.curso_horas,
+.curso_nome {
+  position: relative;
+}
+
+.curso_horas {
+  font-size: 1.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.curso_nome {
+  margin-top: 2px;
+  font-size: 1rem;
+  line-height: 1.35;
+  color: #3c3a36;
+}
+
+.cursos_legenda {
+  margin-top: 14px;
+  letter-spacing: 0.14em;
+}
+
+@media (max-width: 900px) {
+  .formacao_grade {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  /* No celular o gráfico deita: barras horizontais proporcionais */
+  .cursos_lista {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    border-bottom: 0;
+  }
+
+  .cursos_lista::before {
+    display: none;
+  }
+
+  .curso {
+    padding: 0;
+  }
+
+  .curso_horas,
+  .curso_nome {
+    padding-left: 0;
+    background: none;
+  }
+
+  .curso_horas {
+    font-size: 1.375rem;
+  }
+
+  .curso_haste {
+    position: relative;
+    left: auto;
+    top: auto;
+    order: 3;
+    width: calc((100% - 10px) * var(--h) / 40);
+    height: 2px;
+    margin-top: 12px;
+    transform-origin: left;
+  }
+
+  .curso_haste::before {
+    left: auto;
+    right: -7px;
+    top: -6px;
+  }
+}
+
+/* ---------- Foco no gráfico: o curso apontado acende, os outros recuam ---------- */
+@media (hover: hover) {
+  .curso {
+    transition: opacity 0.25s ease;
+  }
+
+  .cursos_lista:hover .curso {
+    opacity: 0.4;
+  }
+
+  .cursos_lista .curso:hover {
+    opacity: 1;
+  }
+
+  .curso_haste::before {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+
+  .curso:hover .curso_haste::before {
+    transform: scale(1.4);
+    box-shadow: 0 0 0 4px var(--papel), 0 0 0 8px rgba(42, 71, 184, 0.18);
+  }
+}
