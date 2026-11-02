@@ -40,11 +40,11 @@
 }
 
 .contato_lista li {
-  border-top: 1px solid #34332f;
+  border-top: 1px solid var(--linha-sobre-tinta);
 }
 
 .contato_lista li:last-child {
-  border-bottom: 1px solid #34332f;
+  border-bottom: 1px solid var(--linha-sobre-tinta);
 }
 
 .contato_lista a {
@@ -55,7 +55,7 @@
   line-height: 1.15;
   letter-spacing: -0.01em;
   font-weight: 700;
-  color: #fff;
+  color: var(--texto-forte-sobre-tinta);
   overflow-wrap: anywhere;
   background-image: linear-gradient(var(--sinal-claro), var(--sinal-claro));
   background-repeat: no-repeat;
@@ -112,7 +112,7 @@
 .copiar {
   min-height: 44px;
   padding: 0 14px;
-  border: 1px solid #3f3e3a;
+  border: 1px solid var(--borda-sobre-tinta);
   border-radius: 6px;
   background: none;
   color: var(--texto-escuro-sobre-tinta);

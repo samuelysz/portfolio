@@ -11,7 +11,7 @@
   align-items: center;
   gap: 20px;
   padding: 14px max(var(--margem), calc((100% - var(--largura)) / 2 + var(--margem)));
-  background-color: rgba(241, 240, 236, 0.9);
+  background-color: var(--cabecalho-fundo);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--grade);
@@ -119,5 +119,79 @@
     to {
       transform: scaleX(1);
     }
+  }
+}
+
+/* ---------- Luminária: interruptor do modo papel/tela ----------
+   Só a luminária do Pull Cord (KokonutUI), sem o cartão: pendurada do
+   topo da página, com a cúpula no cabeçalho e a cordinha caindo sobre
+   o Hero. Tamanho, recorte e cores vêm daqui; o componente fica intacto. */
+.header nav {
+  margin-left: auto;
+}
+
+.lampada {
+  position: relative;
+  flex: none;
+  width: 48px;
+  align-self: stretch;
+}
+
+.lampada_corpo {
+  position: absolute;
+  top: -14px; /* encosta no topo do cabeçalho (padding de 14px) */
+  left: -48px; /* centraliza a cúpula (x 144 de 288, na metade do tamanho) */
+  transform: scale(0.5);
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+/* só a cordinha e o pingente recebem o mouse; o resto não cobre o Hero */
+.lampada_corpo svg {
+  pointer-events: none;
+}
+
+.lampada_corpo svg g {
+  pointer-events: auto;
+}
+
+/* sem o texto "Desk lamp · On" do cartão */
+.lampada_corpo > div {
+  display: none;
+}
+
+/* cores do site no lugar dos cinzas e do âmbar do componente */
+.lampada_corpo line {
+  stroke: var(--anotacao);
+}
+
+.lampada_corpo svg > path:nth-of-type(1) {
+  fill: var(--lampada-cupula); /* cúpula */
+}
+
+.lampada_corpo svg > path:nth-of-type(2) {
+  fill: var(--filete); /* lâmpada apagada */
+}
+
+.lampada_corpo svg > path.fill-amber-300 {
+  fill: var(--sinal); /* lâmpada acesa: o azul do sinal */
+}
+
+.lampada_corpo svg > path:nth-of-type(3) {
+  stroke: var(--anotacao); /* cordinha */
+}
+
+.lampada_corpo svg g > rect:last-of-type {
+  fill: var(--lampada-pingente); /* pingente */
+}
+
+.lampada_corpo svg g > rect.fill-none {
+  stroke: var(--sinal); /* foco pelo teclado */
+}
+
+/* No celular o cabeçalho não tem espaço: o modo segue o sistema */
+@media (max-width: 600px) {
+  .lampada {
+    display: none;
   }
 }

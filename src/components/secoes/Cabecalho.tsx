@@ -1,3 +1,5 @@
+import { Lampada } from "@/components/secoes/Lampada";
+
 export function Cabecalho() {
   return (
     <header className="header">
@@ -12,6 +14,7 @@ export function Cabecalho() {
           <li><a href="#contato">Contato</a></li>
         </ul>
       </nav>
+      <Lampada />
     </header>
   );
 }

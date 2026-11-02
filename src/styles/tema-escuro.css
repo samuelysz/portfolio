@@ -1,0 +1,25 @@
+/* ==========================================================
+   Ajustes do modo tela (escuro) que não são só cor.
+   Vale quando o sistema está escuro (sem escolha salva) ou quando a
+   luminária foi apagada (data-tema="escuro").
+   ========================================================== */
+
+/* Marca: o "S" azul-marinho some no fundo escuro; vira o tom do texto */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema="claro"]) .header_marca img {
+    filter: brightness(0) invert(0.92);
+  }
+
+  /* Recorte com a borda afinada: sem a franja clara no cabelo */
+  :root:not([data-tema="claro"]) .onda_personagem {
+    content: url("/img/personagem1-recorte-escuro.png");
+  }
+}
+
+:root[data-tema="escuro"] .header_marca img {
+  filter: brightness(0) invert(0.92);
+}
+
+:root[data-tema="escuro"] .onda_personagem {
+  content: url("/img/personagem1-recorte-escuro.png");
+}

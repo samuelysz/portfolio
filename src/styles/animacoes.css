@@ -18,7 +18,7 @@ footer[id] {
 
 ::selection {
   background-color: var(--sinal);
-  color: #fff;
+  color: var(--sobre-sinal);
 }
 
 /* ---------- Entrada da introdução ---------- */
@@ -92,7 +92,7 @@ footer[id] {
 /* Passar o mouse num ofício acende o pico dele */
 .harmonico:hover .harmonico_ponto {
   transform: scale(1.5);
-  box-shadow: 0 0 0 4px var(--papel), 0 0 0 8px rgba(42, 71, 184, 0.18);
+  box-shadow: 0 0 0 4px var(--papel), 0 0 0 8px var(--halo-sinal);
 }
 
 .harmonico_nota {
@@ -274,7 +274,7 @@ footer[id] {
 
 .projeto:hover .projeto_ponto {
   transform: scale(1.5);
-  box-shadow: 0 0 0 5px var(--papel), 0 0 0 9px rgba(42, 71, 184, 0.18);
+  box-shadow: 0 0 0 5px var(--papel), 0 0 0 9px var(--halo-sinal);
 }
 
 .projeto:hover .projeto_ano {
@@ -312,7 +312,7 @@ footer[id] {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: var(--sobre-sinal);
   opacity: 0;
 }
 
