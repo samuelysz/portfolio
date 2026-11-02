@@ -102,7 +102,13 @@ p {
 .secao {
   max-width: var(--largura);
   margin: 0 auto;
-  padding: 120px var(--margem) 40px;
+  /* ritmo: 120px entre seções (no celular, 80px) */
+  padding: 120px var(--margem) 0;
+}
+
+/* a última seção antes do Contato também respira até a faixa escura */
+.secao.formacao {
+  padding-bottom: 120px;
 }
 
 .secao_cabeca {
@@ -115,7 +121,7 @@ p {
 }
 
 .secao_titulo {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(2.125rem, 3.9vw, 3.5rem);
   line-height: 0.95;
   letter-spacing: -0.025em;
   text-transform: uppercase;
@@ -157,7 +163,7 @@ p {
   border-radius: 999px;
   background-color: var(--sinal);
   color: var(--sobre-sinal);
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   font-weight: 600;
   line-height: 1.2;
   white-space: nowrap;
@@ -200,12 +206,16 @@ p {
     padding-top: 80px;
   }
 
+  .secao.formacao {
+    padding-bottom: 80px;
+  }
+
   .secao_cabeca {
     grid-template-columns: 1fr;
     gap: 16px;
   }
 
   .secao_texto {
-    font-size: 1.125rem;
+    font-size: 1.0625rem;
   }
 }
