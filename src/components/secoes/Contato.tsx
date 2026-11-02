@@ -1,3 +1,5 @@
+import { CopiarEmail } from "@/components/secoes/CopiarEmail";
+
 export function Contato() {
   return (
     <footer className="contato" id="contato" aria-labelledby="titulo-contato">
@@ -12,8 +14,7 @@ export function Contato() {
         <ul className="contato_lista">
           <li className="contato_email">
             <a href="mailto:samueel.dev@gmail.com">samueel.dev@gmail.com</a>
-            <button className="copiar" type="button" data-copiar="samueel.dev@gmail.com" hidden>Copiar e-mail</button>
-            <span className="visualmente-oculto" role="status" data-copiar-status=""></span>
+            <CopiarEmail email="samueel.dev@gmail.com" />
           </li>
           <li><a href="tel:+5561986668594">+55 61 98666-8594</a></li>
           <li><a href="https://www.instagram.com/samuelycz/" target="_blank" rel="noopener">@samuelycz</a></li>

@@ -128,7 +128,8 @@
   color: var(--sinal-claro);
 }
 
-.copiar[data-estado="copiado"] {
+/* estado de sucesso do Particle Button */
+.copiar[data-status="success"] {
   border-color: var(--sinal-claro);
   background-color: var(--sinal-claro);
   color: var(--tinta);

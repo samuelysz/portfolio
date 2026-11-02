@@ -10,7 +10,6 @@ export function iniciarAnimacoes() {
 
   revelarAoRolar();
   destacarSecaoNoMenu();
-  copiarEmail();
   relogioDF();
   medirHeroNoCelular();
 }
@@ -90,32 +89,6 @@ function destacarSecaoNoMenu() {
   Object.keys(porId).forEach((id) => {
     const secao = document.getElementById(id);
     if (secao) espiao.observe(secao);
-  });
-}
-
-// Copiar o e-mail: o botão só aparece onde a área de transferência existe
-function copiarEmail() {
-  const botao = document.querySelector<HTMLButtonElement>("[data-copiar]");
-  const status = document.querySelector<HTMLElement>("[data-copiar-status]");
-  if (!botao || !navigator.clipboard) return;
-  botao.hidden = false;
-  const rotulo = botao.textContent;
-  let espera: ReturnType<typeof setTimeout> | undefined;
-  botao.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(botao.dataset.copiar ?? "");
-      botao.textContent = "Copiado";
-      botao.dataset.estado = "copiado";
-      if (status) status.textContent = "E-mail copiado para a área de transferência";
-    } catch {
-      botao.textContent = "Não foi possível copiar";
-    }
-    clearTimeout(espera);
-    espera = setTimeout(() => {
-      botao.textContent = rotulo;
-      delete botao.dataset.estado;
-      if (status) status.textContent = "";
-    }, 2200);
   });
 }
 
