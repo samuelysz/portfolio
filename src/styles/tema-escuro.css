@@ -1,21 +1,11 @@
 /* ==========================================================
    Ajustes do modo tela (escuro) que não são só cor.
    Vale quando o sistema está escuro (sem escolha salva) ou quando a
-   luminária foi apagada (data-tema="escuro").
+   botão de tema escolheu o escuro (data-tema="escuro").
    ========================================================== */
 
 /* O modo tela é só do desktop; no celular a página fica sempre clara
    (ver global.css). */
 
-/* Marca: o "S" azul-marinho some no fundo escuro; vira o tom do texto */
-@media (prefers-color-scheme: dark) and (min-width: 901px) {
-  :root:not([data-tema="claro"]) .header_marca img {
-    filter: brightness(0) invert(0.92);
-  }
-}
+/* A marca usa o azul do sinal (header.css), que já tem versão para o escuro */
 
-@media (min-width: 901px) {
-  :root[data-tema="escuro"] .header_marca img {
-    filter: brightness(0) invert(0.92);
-  }
-}

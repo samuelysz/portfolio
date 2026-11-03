@@ -142,11 +142,11 @@ p {
   /* duas camadas de máscara desenhadas do mesmo jeito (SVG, y 26, traço de
      1.5px): o pulso e a linha reta, sem degrau na emenda */
   -webkit-mask:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28' fill='none'%3E%3Cpath d='M0 26 H34 C44 26 48 2.75 60 2.75 C72 2.75 76 26 86 26 H120' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat 0 0 / var(--pulso-largura) 28px,
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28' preserveAspectRatio='none' fill='none'%3E%3Cpath d='M0 26 H120' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat var(--pulso-largura) 0 / calc(100% - var(--pulso-largura)) 28px;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28' preserveAspectRatio='none' fill='none'%3E%3Cpath d='M0 26 H34 C44 26 48 2.75 60 2.75 C72 2.75 76 26 86 26 H120' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat 0 0 / var(--pulso-largura) 28px,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28' preserveAspectRatio='none' fill='none'%3E%3Cpath d='M0 26 H120' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat calc(var(--pulso-largura) - 1px) 0 / calc(100% - var(--pulso-largura) + 1px) 28px;
   mask:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28' fill='none'%3E%3Cpath d='M0 26 H34 C44 26 48 2.75 60 2.75 C72 2.75 76 26 86 26 H120' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat 0 0 / var(--pulso-largura) 28px,
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28' preserveAspectRatio='none' fill='none'%3E%3Cpath d='M0 26 H120' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat var(--pulso-largura) 0 / calc(100% - var(--pulso-largura)) 28px;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28' preserveAspectRatio='none' fill='none'%3E%3Cpath d='M0 26 H34 C44 26 48 2.75 60 2.75 C72 2.75 76 26 86 26 H120' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat 0 0 / var(--pulso-largura) 28px,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28' preserveAspectRatio='none' fill='none'%3E%3Cpath d='M0 26 H120' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat calc(var(--pulso-largura) - 1px) 0 / calc(100% - var(--pulso-largura) + 1px) 28px;
   pointer-events: none;
 }
 

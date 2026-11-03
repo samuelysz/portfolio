@@ -4,7 +4,7 @@ export function Cabecalho() {
   return (
     <header className="header">
       <a className="header_marca" href="./">
-        <img src="./img/marca.svg" alt="" width="32" height="41" />
+        <span className="header_monograma" aria-hidden="true"></span>
         <span className="header_nome">Samuel Souza</span>
       </a>
       <nav aria-label="Principal">
