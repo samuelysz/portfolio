@@ -1,4 +1,5 @@
 import { Carta } from "@/components/secoes/Carta";
+import { FaixaTrabalhos } from "@/components/secoes/FaixaTrabalhos";
 import { experiencias } from "@/lib/experiencias";
 
 export function Experiencia() {
@@ -30,6 +31,8 @@ export function Experiencia() {
           ))}
         </ol>
       </div>
+
+      <FaixaTrabalhos />
     </section>
   );
 }

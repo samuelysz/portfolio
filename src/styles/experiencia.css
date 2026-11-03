@@ -187,37 +187,40 @@
   color: var(--texto-corrido);
 }
 
-.carta_trabalhos {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 16px;
-}
-
-/* miniaturas: só a imagem principal, sem giro */
-.carta_miniatura {
-  display: block;
-  aspect-ratio: 5 / 4;
+/* texto recortado, com "Ler mais" quando passa do limite:
+   4 linhas com as cartas lado a lado, 3 quando empilhadas */
+.carta_texto:not([data-aberto]) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--linhas, 4);
+  line-clamp: var(--linhas, 4);
   overflow: hidden;
-  border: 1px solid var(--filete);
-  border-radius: 4px;
-  transition: border-color 0.25s ease;
 }
 
-.carta_miniatura img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.carta_mais {
+  align-self: flex-start;
+  min-height: 44px;
+  margin: 0 0 -8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--sinal);
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 
-.carta_miniatura:hover,
-.carta_miniatura:focus-visible {
-  border-color: var(--sinal);
+.carta_mais:hover {
+  color: var(--sinal-forte);
 }
 
-.carta_miniatura:focus-visible {
+.carta_mais:focus-visible {
   outline: 2px solid var(--sinal);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 .carta_etiquetas {
@@ -245,12 +248,19 @@
   box-shadow: 0 22px 44px -18px rgba(20, 20, 20, 0.35);
 }
 
-/* ---------- Desktop largo (1400px+): quatro cartas sob a onda ---------- */
+/* ---------- Desktop largo (1400px+): quatro cartas iguais, lado a lado ----------
+   Sem a onda nem a linha dos anos: o ano está no canto de cada carta. */
 @media (min-width: 1400px) {
+  .linha-tempo_sinal,
+  .projeto_ano,
+  .projeto_ponto {
+    display: none;
+  }
+
   .projetos {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0; /* colunas iguais: os anos ficam no topo dos picos */
+    gap: 0;
   }
 
   /* o HTML vai do mais novo ao mais antigo; a linha lê de 2022 a 2026 */
@@ -265,14 +275,9 @@
     align-items: stretch;
   }
 
-  .carta_mais {
-    display: none;
-  }
-
-  /* a carta começa logo abaixo da base da onda e todas têm a mesma altura */
+  /* todas com a mesma altura */
   .projeto .carta {
     flex: 1;
-    margin-top: 132px; /* abaixo da base da onda, com a linha visível */
   }
 }
 
@@ -314,48 +319,9 @@
   }
 
   .projeto .carta {
+    --linhas: 3;
     max-width: 620px;
     margin-top: 14px;
-  }
-
-  /* texto em três linhas, com "Ler mais" */
-  .carta_texto:not([data-aberto]) {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    overflow: hidden;
-  }
-
-  .carta_mais {
-    align-self: flex-start;
-    min-height: 44px;
-    margin: 0 0 -8px;
-    padding: 0;
-    border: 0;
-    background: none;
-    font: inherit;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--sinal);
-    cursor: pointer;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 4px;
-  }
-
-  .carta_mais:hover {
-    color: var(--sinal-forte);
-  }
-
-  .carta_mais:focus-visible {
-    outline: 2px solid var(--sinal);
-    outline-offset: 3px;
-  }
-
-  /* miniaturas num tamanho de miniatura, não de vitrine */
-  .carta_trabalhos {
-    max-width: 380px;
   }
 
   /* o ano já está acima da carta */
@@ -387,5 +353,80 @@
   .carta:hover,
   .carta:focus-within {
     transform: none;
+  }
+}
+
+/* ---------- Faixa de trabalhos (S Design) ----------
+   Peças de design gráfico passando devagar sob as cartas; a faixa para
+   quando o mouse entra (LogoLoop, React Bits). */
+.faixa-trabalhos {
+  margin-top: 64px;
+  /* sangra até as bordas da tela */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.faixa-trabalhos .logoloop__item,
+.faixa-trabalhos .logoloop__node {
+  /* o LogoLoop dimensiona logos pela fonte; aqui a fonte é a do site */
+  font-size: 1rem;
+  line-height: normal;
+  height: auto;
+}
+
+.faixa-cartao {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 280px;
+  text-align: left;
+}
+
+/* mais específico que a regra de "logo" do LogoLoop, que fixa a altura */
+.faixa-trabalhos .faixa-cartao img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  max-height: none;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  border: 1px solid var(--filete);
+  border-radius: 4px;
+  transition: border-color 0.25s ease;
+}
+
+.faixa-cartao_legenda {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.9375rem;
+  color: var(--anotacao);
+  white-space: nowrap;
+}
+
+.faixa-cartao_legenda strong {
+  font-weight: 600;
+  color: var(--tinta);
+}
+
+.faixa-cartao:hover img,
+.faixa-cartao:focus-visible img {
+  border-color: var(--sinal);
+}
+
+.faixa-cartao:focus-visible {
+  outline: 2px solid var(--sinal);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+@media (max-width: 900px) {
+  .faixa-trabalhos {
+    margin-top: 48px;
+  }
+
+  .faixa-cartao {
+    width: 220px;
   }
 }

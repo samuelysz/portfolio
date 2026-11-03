@@ -3,8 +3,8 @@ import type { Experiencia } from "@/lib/experiencias";
 
 /**
  * Uma experiência como carta: ano no canto, nome, cargo, texto, etiquetas e link.
- * Quando as cartas estão empilhadas (abaixo de 1400px), o texto mostra três
- * linhas e um "Ler mais" — só se ele de fato passar de três linhas.
+ * O texto mostra 4 linhas (3 com as cartas empilhadas) e um "Ler mais" —
+ * só se ele de fato passar desse limite.
  */
 export function Carta({ exp }: { exp: Experiencia }) {
   const textoId = useId();
@@ -48,18 +48,6 @@ export function Carta({ exp }: { exp: Experiencia }) {
         >
           {aberto ? "Ler menos" : "Ler mais"}
         </button>
-      )}
-
-      {exp.trabalhos && (
-        <ul className="carta_trabalhos" aria-label="Trabalhos de design gráfico">
-          {exp.trabalhos.map((t) => (
-            <li key={t.nome}>
-              <a className="carta_miniatura" href={exp.link?.href} target="_blank" rel="noopener">
-                <img src={t.frente.src} alt={t.frente.alt} width={t.frente.w} height={t.frente.h} />
-              </a>
-            </li>
-          ))}
-        </ul>
       )}
 
       <ul className="etiquetas carta_etiquetas">
