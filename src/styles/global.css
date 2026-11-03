@@ -38,6 +38,13 @@
   --largura: 1440px;
 }
 
+/* faixas que sangram até a borda (100vw) não criam rolagem lateral
+   quando a barra de rolagem vertical ocupa espaço (Windows) */
+html,
+body {
+  overflow-x: clip;
+}
+
 body {
   font-family: "Fira Sans", Arial, sans-serif;
   font-kerning: normal;
