@@ -41,7 +41,6 @@
 .header_nome {
   font-size: 1.0625rem;
   font-weight: 600;
-  color: var(--texto-secundario); /* cinza escuro: o monograma azul conduz */
   letter-spacing: -0.01em;
   white-space: nowrap;
 }
