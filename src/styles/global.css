@@ -23,6 +23,7 @@
   --texto-secundario: light-dark(#4a4843, #b3b1aa);
   --sobre-sinal: light-dark(#fff, #0c1233);
   --halo-sinal: light-dark(rgba(42, 71, 184, 0.18), rgba(138, 162, 255, 0.24));
+  --marca: light-dark(#040d32, #ecebe6);
   --cabecalho-fundo: light-dark(rgba(241, 240, 236, 0.9), rgba(17, 17, 16, 0.88));
   /* fundo animado do Hero (Flow Field): no escuro, bem apagado */
   --fluxo: light-dark(#c9c7bf, #242422);

@@ -27,13 +27,13 @@
   border-radius: 6px;
 }
 
-/* Monograma "S" pintado com o azul do sinal (o mesmo do menu e da onda);
-   acompanha o modo claro/escuro sozinho */
+/* Monograma "S" na cor original da marca (azul-marinho); no modo escuro,
+   no tom claro do texto, para continuar visível */
 .header_monograma {
   flex: none;
   width: 26px;
   height: 33px;
-  background-color: var(--sinal);
+  background-color: var(--marca);
   -webkit-mask: url("/img/marca.svg") no-repeat center / contain;
   mask: url("/img/marca.svg") no-repeat center / contain;
 }
