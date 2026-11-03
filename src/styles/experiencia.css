@@ -5,8 +5,8 @@
    ========================================================== */
 .linha-tempo {
   position: relative;
-  /* com a altura da linha dos anos, ~48px até o cabeçalho, como nas outras seções */
-  margin-top: 16px;
+  /* com a altura da linha dos anos, ~56px até o texto de introdução */
+  margin-top: 56px;
 }
 
 .linha-tempo_sinal {

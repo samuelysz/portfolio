@@ -111,13 +111,36 @@ p {
   padding-bottom: 120px;
 }
 
+/* Cabeçalho de seção: a seção abre com a linha de entrada do canal (um
+   pulso de sinal que segue como linha reta, do azul do sinal à cor da
+   linha). Embaixo, o título e, colado a ele, o texto de introdução. */
 .secao_cabeca {
+  --pulso-largura: 120px;
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 40px 100px;
-  align-items: end;
-  padding-bottom: 32px;
-  border-bottom: 1px solid var(--tinta);
+  grid-template-columns: 1fr;
+  gap: 18px;
+  padding-top: 64px;
+}
+
+.secao_cabeca::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  /* azul no pulso, esmaecendo bem devagar até a cor da linha */
+  background: linear-gradient(90deg, var(--sinal) 0, var(--sinal) calc(var(--pulso-largura) * 0.8), var(--tinta) calc(var(--pulso-largura) * 3.2));
+  /* duas camadas de máscara desenhadas do mesmo jeito (SVG, y 26, traço de
+     1.5px): o pulso e a linha reta, sem degrau na emenda */
+  -webkit-mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28' fill='none'%3E%3Cpath d='M0 26 H34 C44 26 48 2.75 60 2.75 C72 2.75 76 26 86 26 H120' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat 0 0 / var(--pulso-largura) 28px,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28' preserveAspectRatio='none' fill='none'%3E%3Cpath d='M0 26 H120' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat var(--pulso-largura) 0 / calc(100% - var(--pulso-largura)) 28px;
+  mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28' fill='none'%3E%3Cpath d='M0 26 H34 C44 26 48 2.75 60 2.75 C72 2.75 76 26 86 26 H120' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat 0 0 / var(--pulso-largura) 28px,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28' preserveAspectRatio='none' fill='none'%3E%3Cpath d='M0 26 H120' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat var(--pulso-largura) 0 / calc(100% - var(--pulso-largura)) 28px;
+  pointer-events: none;
 }
 
 .secao_titulo {
@@ -132,7 +155,7 @@ p {
   font-size: 1.375rem;
   line-height: 1.45;
   color: var(--texto-corrido);
-  max-width: 44ch;
+  max-width: 52ch;
 }
 
 .secao_texto strong {
@@ -211,8 +234,9 @@ p {
   }
 
   .secao_cabeca {
-    grid-template-columns: 1fr;
+    --pulso-largura: 96px;
     gap: 16px;
+    padding-top: 52px;
   }
 
   .secao_texto {

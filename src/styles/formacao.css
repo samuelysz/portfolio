@@ -6,9 +6,15 @@
 /* ---------- Leituras ---------- */
 .formacao_leituras {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 0 clamp(48px, 7vw, 120px);
-  margin-top: 48px;
+  margin-top: 64px;
+}
+
+/* a divisão já é a linha de entrada da seção; as leituras não repetem */
+.formacao_leituras .anotacao {
+  border-top: 0;
+  padding-top: 0;
 }
 
 /* No desktop as duas leituras dividem as mesmas linhas (título, detalhe,
