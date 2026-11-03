@@ -8,12 +8,10 @@ export function Experiencia() {
       <div className="secao_cabeca">
         <h2 className="secao_titulo" id="titulo-experiencia">Experiência</h2>
         <p className="secao_texto">
-          Desenvolvi projetos como o Bikcraft com <strong>HTML, CSS e JavaScript</strong>, priorizando código organizado,{" "}
-          <strong>layout responsivo</strong> e uma boa experiência em qualquer tela. Uno <strong>front-end</strong> e{" "}
-          <strong>UX/UI Design</strong> para criar interfaces intuitivas, sempre pensando em quem vai usar. Construí meu
-          portfólio com <strong>TypeScript</strong> e, na graduação em <strong>Engenharia de Software</strong>, programo em{" "}
-          <strong>Python</strong> e <strong>C</strong>, fortalecendo minha lógica e resolução de problemas. Estou sempre
-          aprendendo novas tecnologias para evoluir como desenvolvedor.
+          Desenvolvo interfaces com <strong>HTML, CSS, JavaScript e TypeScript</strong>, unindo <strong>front-end</strong> e{" "}
+          <strong>UX/UI Design</strong> em layouts responsivos e fáceis de usar. Na graduação em{" "}
+          <strong>Engenharia de Software</strong>, programo em <strong>Python</strong> e <strong>C</strong> e sigo aprendendo
+          novas tecnologias.
         </p>
       </div>
 
